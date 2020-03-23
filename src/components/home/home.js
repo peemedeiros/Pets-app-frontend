@@ -3,7 +3,10 @@ import PreCadastro from './precadastro'
 
 import './styles.css';
 import logo from '../../assets/logo.png';
-import plano1 from '../../assets/transporte.jpg'
+import plano1 from '../../assets/transporte.jpg';
+import arrow from '../../assets/arrow.png';
+
+
 
 export default function home(){
     return(
@@ -125,8 +128,41 @@ export default function home(){
                             </div>
                         </div>
                         <div className='col'>
+                            <div className='row'>
+                                <div className='col'>
+                                    <p className='pergunta'>
+                                        Como faço para me cadastrar?
+                                        <div className='drop-pergunta'>
+                                            <img src={arrow} alt="arrow"/>
+                                        </div>
+                                    </p>
+
+                                    <p className='pergunta'>
+                                        Como faço para me cadastrar?
+                                        <div className='drop-pergunta'>
+                                            <img src={arrow} alt="arrow"/>
+                                        </div>
+                                    </p>
+
+                                    <p className='pergunta'>
+                                        Como faço para me cadastrar?
+                                        <div className='drop-pergunta'>
+                                            <img src={arrow} alt="arrow"/>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='section5'>
+                <div className='container'>
+                    <hr/>
+                    <div className='row'>
+                        <div className='col'>
                             <p>
-                                Como faço para me cadastrar na Pet's App?
+                                Um rodapé qualquer
                             </p>
                         </div>
                     </div>
