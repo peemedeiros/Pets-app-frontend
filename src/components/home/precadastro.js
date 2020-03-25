@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function PreCadastro(){
     return(
@@ -21,7 +22,7 @@ export default function PreCadastro(){
                 </div> 
                 <div className="form-group flex-center">
                     <button type="button" className="btn btn-light">
-                        INICIAR CADASTRO
+                        <Link className="nav-link" to="/cadastro"> INICIAR CADASTRO </Link>
                     </button>
                 </div>
             </form>

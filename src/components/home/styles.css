@@ -80,7 +80,8 @@
   .pre-cadastro .form-group{
     margin-bottom:30px;
   }
-  .pre-cadastro .btn {
+  .pre-cadastro .btn,
+  .cadastroEmpresa .btn {
     width: 331px;
     height: 52px;
     background-color:#FE8F6C;
@@ -229,4 +230,63 @@
   .section5 p{
     font-size: 13px;
     color: #777777;
+  }
+
+  /* TELA DE CADASTRO DE EMRPESA */
+
+  .cadastro-main{
+    width: 100%;
+    height: auto;
+    min-height: 1000px;
+    background-color: #FFF5F3;
+  }
+
+  .cadastro-main .nav-bar-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cadastro-main .nav-bar-container img{
+    width: 180px;
+    height: 40px;
+  }
+  .progress{
+    height: 8px;
+    margin-bottom: 50px;
+  }
+  .barra-width{
+    width: 30%;
+    background-color: #FF6E41;
+  }
+  /* FORMULARIO DE CADASTRO */
+  .cadastroEmpresa{
+    width: 550px;
+    height: 1160px;
+  }
+  .form-group label{
+    font-weight: bold;
+  }
+  .cadastroEmpresa .form-group{
+    margin-bottom:25px;
+  }
+  .cnpj{
+    width: 366px;
+  }
+  .cep{
+    width: 200px;
+  }
+  .custom-control-input:checked~.custom-control-label::before{
+    background-color: #FE8F6C;
+    border-color: #FF6E41;
+  }
+  .margin-mini-bot{
+    margin-bottom: 50px !important;
+  }
+
+  /* Confirmar cadastro */
+  .teste{
+    width: 500px;
+    height: 500px;
+    background-color: aquamarine;
   }

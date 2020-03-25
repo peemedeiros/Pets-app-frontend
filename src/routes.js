@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from './components/home/home';
+import Cadastro from './components/home/cadastro';
+import ConfirmarCadastro from './components/home/confirmacaoCadastro';
 
 
 export default function Routes() {
@@ -10,6 +12,8 @@ export default function Routes() {
             <Switch>
                 
                 <Route path='/' exact component={Home}/>
+                <Route path='/cadastro' component={Cadastro}/>
+                <Route path='/confirmar' exact component={ConfirmarCadastro} />
 
             </Switch>
         </BrowserRouter>
