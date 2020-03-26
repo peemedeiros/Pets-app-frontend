@@ -1,5 +1,6 @@
 import React from 'react';
 import PreCadastro from './precadastro'
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 import logo from '../../assets/logo.png';
@@ -18,13 +19,15 @@ export default function home(){
                             <img src={logo} className='logo' alt="logo"/>
                         </div>
                         <div className="coluna-flex">
+
                             <button type="button" className="btn btn-light">
-                                Já sou cadastrado
+                                <Link to="/login">Já sou cadastrado</Link>
                             </button>
 
                             <button type="button" className="btn btn-light bg-white">
                                 Planos de pagamento
                             </button>
+
                         </div>
                     </div>
                     <div className='row'>

@@ -31,6 +31,19 @@
       color: #FE8F6C;
       font-weight: bold;
   }
+  .coluna-flex .btn-light a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    color:#fff;
+  }
+  .coluna-flex .btn-light a:hover{
+    text-decoration: none;
+  }
+  .pre-cadastro .nav-link{
+    color: #fff ;
+  }
   .center{
     margin-left: auto;
     margin-right: auto;
@@ -282,6 +295,9 @@
   }
   .margin-mini-bot{
     margin-bottom: 50px !important;
+  }
+  .cadastroEmpresa a{
+    color: #fff;
   }
 
   /* Confirmar cadastro */
