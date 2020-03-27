@@ -24,7 +24,7 @@ export default function formularioLogin(){
                 </div>
 
                 <div className="form-group flex-center">
-                <button type="button" class="btn btn-salmao btn-lg btn-block">
+                    <button type="button" class="btn btn-light btn-lg btn-block">
                         <Link className="nav-link" to="/"> Login </Link>
                     </button>
                 </div>

@@ -8,16 +8,16 @@ export default function login(){
        
        <div className="login">
             <div id="area_foto">
-                foto do gato
+                
             </div>
 
             <div id="area_form">
                 <div className="logo_pet">
-
+                    
                 </div>
 
                 <div className="titulo-pet">
-                    <h5>PET's APP</h5>
+                    <h5>PETS APP</h5>
                 </div>
 
                 <div className="container">

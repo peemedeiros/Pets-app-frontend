@@ -1,32 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import CadastroEmpresaForm from './formularioCadastro';
-import ConfirmarCadastro from './confirmacaoCadastro';
+import ConfirmacaoForm from './confirmacaoCadastro';
+import ProgressBar from './progressBar';
 
-import logo2 from '../../assets/logo2.png';
+const stateInicial = {
+    step : 1
+}
 
-export default function Cadastro(){
-    return(
-        <>
-            <div className='cadastro-main'>
-                <div className='container'>
-                    <div className='nav-bar-container center'>
-                        <img src={logo2} alt="logo" />
-                        
-                    </div>
-                </div>
-                <div className="progress">
-                    <div className="progress-bar progress-bar-striped progress-bar-animated barra-width" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <CadastroEmpresaForm />
+export default class Cadastro extends Component{
+
+    state = { ...stateInicial };
+
+    constructor(){
+        super()
+        this.firstStep = this.firstStep.bind(this);
+        this.secondStep = this.secondStep.bind(this);
+        this.finalStep = this.finalStep.bind(this);
+        this.currentStep = this.currentStep.bind(this)
+    }
+
+    firstStep(){
+        return this.setState({ step: 1 })
+    }
+    secondStep(){
+        return this.setState({ step: 2 })
+    }
+    finalStep(){
+        return this.setState({ step: 3 })
+    }
+
+    currentStep(step){
+
+        if(step === 1)
+            return <CadastroEmpresaForm secondStep={this.secondStep}/>
+         else if (step === 2)
+            return <ConfirmacaoForm />
+    }
+
+    render(){
+
+        return(
+            <>
+                <div className='cadastro-main'>
+    
+                    <ProgressBar progresso={this.state.step}/>
+    
+                    <div className="container">
+                        <div className="row">
+                            <div className="col">
+                    
+                                {this.currentStep(this.state.step)}
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </>
-    )
+    
+            </>
+        )
+    }
+    
 }
