@@ -1,56 +1,45 @@
 import React, { Component } from 'react';
 
-import CadastroEmpresaForm from './formularioCadastro';
-import ConfirmacaoForm from './confirmacaoCadastro';
+import CurrentStep from '../functions/currentStep';
 import ProgressBar from './progressBar';
+import BackStep from '../functions/backStep';
 
-const stateInicial = {
-    step : 1
-}
 
 export default class Cadastro extends Component{
 
-    state = { ...stateInicial };
-
     constructor(){
         super()
-        this.firstStep = this.firstStep.bind(this);
-        this.secondStep = this.secondStep.bind(this);
-        this.finalStep = this.finalStep.bind(this);
-        this.currentStep = this.currentStep.bind(this)
+        this.state = {
+            nomeDono:'',
+            emailDono:'',
+            celularDono:'',
+            step:1
+        }
+
+        this.nextStep = this.nextStep.bind(this);
     }
 
-    firstStep(){
-        return this.setState({ step: 1 })
-    }
-    secondStep(){
-        return this.setState({ step: 2 })
-    }
-    finalStep(){
-        return this.setState({ step: 3 })
+    //Verifica o estado do step do cadastro atual
+    nextStep(formStep){
+        return this.setState({ step: formStep})
     }
 
-    currentStep(step){
-
-        if(step === 1)
-            return <CadastroEmpresaForm secondStep={this.secondStep}/>
-         else if (step === 2)
-            return <ConfirmacaoForm />
-    }
+    
 
     render(){
-
         return(
             <>
                 <div className='cadastro-main'>
-    
-                    <ProgressBar progresso={this.state.step}/>
+
+                    <BackStep step={this.state.step} nextStep={this.nextStep}/>
+
+                    <ProgressBar progresso={this.state.step} />
     
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                    
-                                {this.currentStep(this.state.step)}
+                                
+                                <CurrentStep step={this.state.step} nextStep={this.nextStep}/>
 
                             </div>
                         </div>

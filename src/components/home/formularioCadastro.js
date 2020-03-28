@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default function FormularioCadastro(props){
+
     return(
         <>
             <form className='cadastroEmpresa center'>
@@ -74,9 +74,8 @@ export default function FormularioCadastro(props){
                 </div>
 
                 <div className="form-group flex-center">
-                    <button type="button" onClick={props.secondStep} className="btn btn-light">
+                    <button type="button" onClick={(e)  => props.nextStep(2)} className="btn btn-light">
                         Continuar
-                        {/* <Link className="nav-link" to="/confirmar"> Continuar </Link> */}
                     </button>
                 </div>
                 
