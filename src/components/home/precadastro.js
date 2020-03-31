@@ -1,61 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
+import useForm from '../../hooks/useForm';
 import { Link } from 'react-router-dom';
 
-export default class PreCadastro extends Component{
+export default function PreCadastro(){
 
-    constructor(){
-        super()
-        this.state = {
-            nomeDono:'',
-            emailDono:'',
-            CelularDono:'',
-        }
-    }
-    
-    inputHadler = (e) => {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
+    const [{ values }, handleChange, handleSubmit] = useForm();
 
-        console.log(name)
-        console.log(value)
+    const enviarContato = () => {
+        localStorage.setItem('@petsApp/step1', JSON.stringify(values))
     }
 
-    render(){
+    return(
+        <>
+            <form className='pre-cadastro'>
+                <h2 className='text-center'> Cadastre sua empresa </h2>
+                <div className="form-group">
+                    <label htmlFor="inputNome">Nome completo</label>
+                    <input type="text" onChange={handleChange} name="nomeDono" className="form-control" id="inputNome" aria-describedby="emailHelp" placeholder="Nome do dono da empresa"/>
+                </div>
 
-        let errorBorder = ''
-        const inputValidator = element => {
-            if(element.value === ''){
-                errorBorder = 'red';
-                console.log(errorBorder)
-            }
-        }
+                <div className="form-group">
+                    <label htmlFor="inputEmail">E-mail</label>
+                    <input type="text" onChange={handleChange} name="emailDono" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="E-mail do dono da empresa"/>
+                </div>
 
-        return(
-            <>
-                <form className='pre-cadastro'>
-                    <h2 className='text-center'> Cadastre sua empresa </h2>
-                    <div className="form-group">
-                        <label for="inputNome">Nome completo</label>
-                        <input type="text" className="form-control" style={{borderColor:`${errorBorder}`}} id="inputNome" onChange={this.inputHadler} onBlur={inputValidator(this)} aria-describedby="emailHelp" placeholder="Nome do dono da empresa"/>
-                    </div>
-    
-                    <div className="form-group">
-                        <label for="inputEmail">E-mail</label>
-                        <input type="text" className="form-control" id="inputEmail" onChange={this.inputHadler} aria-describedby="emailHelp" placeholder="E-mail do dono da empresa"/>
-                    </div>
-    
-                    <div className="form-group">
-                        <label for="inputCelular">Celular com DDD</label>
-                        <input type="text" className="form-control" id="inputCelular" aria-describedby="emailHelp" placeholder="Celular do dono da empresa"/>
-                    </div> 
-                    <div className="form-group flex-center">
-                        <button type="button" className="btn btn-light" >
-                            <Link className="nav-link" to="/cadastro"> INICIAR CADASTRO </Link>
-                        </button>
-                    </div>
-                </form>
-            </>
-        )
-    }
+                <div className="form-group">
+                    <label htmlFor="inputCelular">Celular com DDD</label>
+                    <input type="text" onChange={handleChange} name="celularDono" className="form-control" id="inputCelular" aria-describedby="emailHelp" placeholder="Celular do dono da empresa"/>
+                </div> 
+                <div className="form-group flex-center">
+                    <button type="submit" className="btn btn-light" >
+                        <Link onClick={ handleSubmit(() => enviarContato()) }  className="nav-link" to="/cadastro" > INICIAR CADASTRO </Link>
+                    </button>
+                </div>
+            </form>
+        </>
+    )
     
 }
