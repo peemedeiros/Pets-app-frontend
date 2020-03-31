@@ -13,8 +13,6 @@ export default class FormularioCadastro extends Component{
             bairro:false,
             logradouro:false,
             numero:false
-
-
         }
         this.emptyCnpj = this.emptyCnpj.bind(this)
         this.emptyRazao = this.emptyRazao.bind(this)
@@ -22,8 +20,10 @@ export default class FormularioCadastro extends Component{
     }
 
     emptyCnpj(){
+        console.log('entrou no cnpj'+this.state.cnpj)
         if(this.state.cnpj){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
+            console.log('oi')
+            return <div className="invalid-feedback">O CNPJ não pode estar vazio</div>
         }
         return null
     }
@@ -73,6 +73,7 @@ export default class FormularioCadastro extends Component{
 
     }
 
+
     process(e){
         this.props.handleChange(e)
         const {name, value} = e.target
@@ -81,28 +82,22 @@ export default class FormularioCadastro extends Component{
             this.setState({[name]:true})
             switch(name){
                 case 'cnpj':   
-                    e.target.className = 'form-control cnpj is-invalid'
+                    e.target.className += ' is-invalid'
                     break
                 case 'razao_social':
-                    e.target.className = 'form-control is-invalid'
-                    break
                 case 'nome_empresa':
-                    e.target.className = 'form-control is-invalid'
-                    break
                 case 'telefone_empresa':
-                    e.target.className = 'form-control is-invalid'
+                    e.target.className += ' is-invalid'
                     break
                 case 'cep':
-                    e.target.className = 'form-control cep is-invalid'
-                    break
-                case 'logradouro':
-                    e.target.className = 'form-control is-invalid cnpj'
+                    e.target.className += ' is-invalid'
                     break
                 case 'bairro':
-                    e.target.className = 'form-control is-invalid cnpj'
-                    break
+                case 'logradouro':
                 case 'numero':
-                    e.target.className = 'form-control is-invalid cnpj'
+                    e.target.className += ' is-invalid'
+                    break
+                default:
                     break
             }
         }else{
@@ -112,11 +107,7 @@ export default class FormularioCadastro extends Component{
                     e.target.className = 'form-control cnpj'
                     break
                 case 'razao_social':
-                    e.target.className = 'form-control'
-                    break
                 case 'nome_empresa':
-                    e.target.className = 'form-control'
-                    break
                 case 'telefone_empresa':
                     e.target.className = 'form-control'
                     break
@@ -124,15 +115,10 @@ export default class FormularioCadastro extends Component{
                     e.target.className = 'form-control cep'
                     break
                 case 'logradouro':
-                    e.target.className = 'form-control cnpj'
-                    break
                 case 'bairro':
-                    e.target.className = 'form-control cnpj'
-                    break
                 case 'numero':
                     e.target.className = 'form-control cnpj'
                     break
-
             }
         }
     }
