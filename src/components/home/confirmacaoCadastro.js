@@ -26,7 +26,11 @@ export default class ConfirmarCadastro extends Component{
                         <label htmlFor="inputLogoEmpresa" className="preview">
                             <img src={camera} alt="camera"/>
                         </label>
-                        <input type="file" name='logo' onChange={this.props.handleChange} value={this.props.senha} className="form-control hide" id="inputLogoEmpresa"/>
+                        <input  type="file"
+                                name='logo' 
+                                onChange={this.props.fileHandler} 
+                                className="form-control hide" 
+                                id="inputLogoEmpresa"/>
                         <small id="logoHelper" className="form-text text-muted">Essa será sua foto no aplicativo</small>
                     </div>
     

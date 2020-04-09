@@ -5,8 +5,9 @@ import Step1 from './formularioCadastro';
 import Step2 from './confirmacaoCadastro';
 import Step3 from './cadastroFinalizado';
 
-import { inserir } from '../../services/cadastro-empresa-services'
+import { inserir, uploadFoto } from '../../services/cadastro-empresa-services'
 import { telefoneMask, cnpjMask, cepMask } from './homeMasks';
+import axios from 'axios';
 
 const preCadastro = () => {
     const preInfo = localStorage.getItem('@petsApp/step1');
@@ -27,7 +28,7 @@ export default class Cadastro extends Component{
             nome_empresa:'',
             cnpj:'',
             telefone_empresa:'',
-            logo:'imagem.jpg',
+            logo:'img.img',
             cep:'',
             logradouro:'',
             numero:'',
@@ -42,11 +43,12 @@ export default class Cadastro extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.findCep = this.findCep.bind(this);
+        this.fileHandler = this.fileHandler.bind(this);
     }
 
     handleChange(event) {
         const {name, value} = event.target
-       
+
         switch(name){
             case 'cnpj':
                 this.setState({[name]: cnpjMask(value)})
@@ -59,11 +61,18 @@ export default class Cadastro extends Component{
                 break;
             default:
                 this.setState({[name]: value})
-            
+                break;
         }
+
+
+    }
+
+    fileHandler(event){
+        this.setState({ logo:event.target.files[0]});
     }
 
     findCep = async (cep) =>{
+        
         try{
              fetch(`https://viacep.com.br/ws/${cep}/json`, {
                 headers:{
@@ -90,13 +99,19 @@ export default class Cadastro extends Component{
         event.preventDefault()
         
         try{
-            const res = await inserir(this.state);
-            if(res.status === 201)
-                return this.nextStep(3);
 
+            const res = await inserir(this.state);
+
+            if(res.status === 201){
+                console.log({res})
+                // res = await uploadFoto(this.state);
+                return this.nextStep(3);
+            }
+                
             return console.log(this.state)
         } catch (erro){
             console.log(erro)
+            console.log('oi')
         }
         
     }
@@ -136,6 +151,7 @@ export default class Cadastro extends Component{
                                         emptyField={this.emptyField}
                                         />
                                     <Step2
+                                        fileHandler={this.fileHandler}
                                         currentStep={this.state.currentStep}
                                         handleChange={this.handleChange}/>
                                     <Step3

@@ -20,9 +20,8 @@ export default class FormularioCadastro extends Component{
     }
 
     emptyCnpj(){
-        console.log('entrou no cnpj'+this.state.cnpj)
         if(this.state.cnpj){
-            console.log('oi')
+            
             return <div className="invalid-feedback">O CNPJ não pode estar vazio</div>
         }
         return null
