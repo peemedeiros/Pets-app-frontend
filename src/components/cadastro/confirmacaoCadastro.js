@@ -3,6 +3,18 @@ import camera from '../../assets/camera.png';
 
 export default class ConfirmarCadastro extends Component{
 
+    constructor(){
+        super()
+        this.state = {
+            senha:'',
+            logo:'',
+        }
+    }
+
+    //Criar function para enviar os dados 
+    //armazenados no estado do componente 
+    //atual para o componente pai
+
     render(){
         if(this.props.currentStep !== 2)
             return null
@@ -37,9 +49,9 @@ export default class ConfirmarCadastro extends Component{
                     <div className="form-group">
                         <button 
                             type="submit" 
-                            className="btn btn-light center">
+                            className="btn btn-light center"
+                            onClick={() => this.props.nextStep(3)}>
                             Cadastrar
-                            {/* <Link className="nav-link" to="/confirmar"> Continuar </Link> */}
                         </button>
                     </div>
     

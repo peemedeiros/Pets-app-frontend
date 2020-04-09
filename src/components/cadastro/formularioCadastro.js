@@ -5,18 +5,43 @@ export default class FormularioCadastro extends Component{
     constructor(){
         super()
         this.state = {
-            cnpj:false,
-            razao_social:false,
-            nome_empresa:false,
-            telefone_empresa:false,
-            cep:false,
-            bairro:false,
-            logradouro:false,
-            numero:false
+            razao_social:'',
+            nome_empresa:'',
+            cnpj:'',
+            telefone_empresa:'',
+            cep:'',
+            logradouro:'',
+            numero:'',
+            complemento:'',
+            bairro:'',
+            cidade:'',
+            uf:'',
+            transporte:''
         }
-        this.emptyCnpj = this.emptyCnpj.bind(this)
-        this.emptyRazao = this.emptyRazao.bind(this)
-        this.process = this.process.bind(this)
+    }
+
+    findCep = cep =>{
+        
+        try{
+             fetch(`https://viacep.com.br/ws/${cep}/json`, {
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => (res.json()))
+            .then(res => {
+                this.setState({
+                    logradouro:res.logradouro,
+                    bairro:res.bairro,
+                    cidade:res.localidade,
+                    uf:res.uf
+                })
+            })
+        }catch(error){
+            console.log('oi')
+        }
+        
     }
 
     emptyCnpj(){
@@ -73,56 +98,11 @@ export default class FormularioCadastro extends Component{
     }
 
 
-    process(e){
-        this.props.handleChange(e)
-        const {name, value} = e.target
-
-        if(value === ''){
-            this.setState({[name]:true})
-            switch(name){
-                case 'cnpj':   
-                    e.target.className += ' is-invalid'
-                    break
-                case 'razao_social':
-                case 'nome_empresa':
-                case 'telefone_empresa':
-                    e.target.className += ' is-invalid'
-                    break
-                case 'cep':
-                    e.target.className += ' is-invalid'
-                    break
-                case 'bairro':
-                case 'logradouro':
-                case 'numero':
-                    e.target.className += ' is-invalid'
-                    break
-                default:
-                    break
-            }
-        }else{
-            this.setState({[name]:false})
-            switch(name){
-                case 'cnpj':   
-                    e.target.className = 'form-control cnpj'
-                    break
-                case 'razao_social':
-                case 'nome_empresa':
-                case 'telefone_empresa':
-                    e.target.className = 'form-control'
-                    break
-                case 'cep':
-                    e.target.className = 'form-control cep'
-                    break
-                case 'logradouro':
-                case 'bairro':
-                case 'numero':
-                    e.target.className = 'form-control cnpj'
-                    break
-            }
-        }
+    process = e => {
+        if(this.state.cnpj === '')
+            e.target.className += ' is-invalid';
+        else return null
     }
-
-
 
     render(){
         
@@ -134,60 +114,60 @@ export default class FormularioCadastro extends Component{
                 <div className='cadastroEmpresa center'>
                     <div className="form-group">
                         <label htmlFor="inputCnpj">CNPJ</label>
-                        <input type="text"  name="cnpj" onBlur={this.process} onChange={this.process} className="form-control cnpj" id="inputCnpj" value={this.props.cnpj} placeholder="Qual é o CNPJ da empresa?"/>
+                        <input type="text"  name="cnpj"  onChange={this.props.handleChange} onBlur={this.process} className="form-control cnpj" id="inputCnpj" placeholder="Qual é o CNPJ da empresa?"/>
                         {this.emptyCnpj()}
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputRazaoSocial">Razão social</label>
-                        <input type="text"  name="razao_social" onBlur={this.process} onChange={this.process} className="form-control" id="inputRazaoSocial" value={this.props.razaoSocial} placeholder="Razão social da empresa"/>
+                        <input type="text"  name="razao_social"  onChange={this.props.handleChange} className="form-control" id="inputRazaoSocial" value={this.props.razaoSocial} placeholder="Razão social da empresa"/>
                         {this.emptyRazao()}
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputNomeEmpresa">Nome da empresa</label>
-                        <input type="text"  name="nome_empresa" onBlur={this.process} onChange={this.process} className="form-control" id="inputNomeEmpresa" value={this.props.nomeEmpresa} placeholder="Nome da empresa"/>
+                        <input type="text"  name="nome_empresa"  onChange={this.props.handleChange} className="form-control" id="inputNomeEmpresa" value={this.props.nomeEmpresa} placeholder="Nome da empresa"/>
                         {this.emptyNomeEmpresa()}
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputTelefoneEmpresa">Telefone</label>
-                        <input type="text"  name="telefone_empresa" onBlur={this.process} onChange={this.process} className="form-control" value={this.props.telefone} id="inputTelefoneEmpresa" placeholder="Qual o telefone da sua empresa?"/>
+                        <input type="text"  name="telefone_empresa"  onChange={this.props.handleChange} className="form-control" value={this.props.telefone} id="inputTelefoneEmpresa" placeholder="Qual o telefone da sua empresa?"/>
                         {this.emptyTelefoneEmpresa()}
                     </div>
                         
                     <div className="form-group">
                         <label htmlFor="inputCep">CEP</label>
-                        <input type="text"  name="cep" onBlur={() => this.props.findCep(this.props.cep)} onChange={this.props.handleChange, this.process}  className="form-control cep" value={this.props.cep} id="inputCep" placeholder="CEP da empresa"/>
+                        <input type="text"  name="cep" onBlur={() => this.findCep(this.state.cep)} onChange={this.props.handleChange}  className="form-control cep" value={this.props.cep} id="inputCep" placeholder="CEP da empresa"/>
                         {this.emptyCep()}
                     </div>
     
                     <div className="form-row">
                         <div className="form-group col-md-8">
                             <label htmlFor="inputCidade">Cidade</label>
-                            <input type="text"  name="cidade" onChange={this.props.handleChange} className="form-control" value={this.props.cidade} id="inputCidade" readOnly placeholder="Cidade da empresa"/>
+                            <input type="text"  name="cidade" onChange={this.props.handleChange} className="form-control" value={this.state.cidade} id="inputCidade" readOnly placeholder="Cidade da empresa"/>
                         </div>
                             <div className="form-group col-md-4">
                             <label htmlFor="inputEstado">Estado</label>
-                            <input type="text"  name="estado" onChange={this.props.handleChange} className="form-control" value={this.props.uf} id="inputEstado" readOnly placeholder="UF da empresa"/>
+                            <input type="text"  name="estado" onChange={this.props.handleChange} className="form-control" value={this.state.uf} id="inputEstado" readOnly placeholder="UF da empresa"/>
                         </div>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputBairro">Bairro</label>
-                        <input type="text"  name="bairro" onBlur={this.process} onChange={this.process} className="form-control cnpj" value={this.props.bairro} id="inputBairro" placeholder="Bairro da empresa"/>
+                        <input type="text"  name="bairro"  onChange={this.props.handleChange} className="form-control cnpj" value={this.state.bairro} id="inputBairro" placeholder="Bairro da empresa"/>
                         {this.emptyBairro()}
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputLogradouro">Logradouro</label>
-                        <input type="text"  name="logradouro" onBlur={this.process} onChange={this.process} className="form-control cnpj" value={this.props.logradouro} id="inputLogradouro" placeholder="Logradouro da empresa"/>
+                        <input type="text"  name="logradouro"  onChange={this.props.handleChange} className="form-control cnpj" value={this.state.logradouro} id="inputLogradouro" placeholder="Logradouro da empresa"/>
                         {this.emptyLogradouro()}
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputNumero">Numero</label>
-                        <input type="text"  name="numero" onBlur={this.process} onChange={this.process} className="form-control cnpj"  value={this.props.numero}id="inputNumero" placeholder="Número do endereço"/>
+                        <input type="text"  name="numero"  onChange={this.props.handleChange} className="form-control cnpj"  value={this.props.numero}id="inputNumero" placeholder="Número do endereço"/>
                         {this.emptyNumero()}
                     </div>
     
