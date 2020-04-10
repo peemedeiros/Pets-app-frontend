@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import PreCadastro from './precadastro';
+import  InputErrorMessage from './inputErrorMsg';
 
 import logo from '../../assets/logo.png';
 import plano1 from '../../assets/transporte.jpg';
@@ -15,6 +16,35 @@ export default class CadastroRestaurante extends Component{
             nomeDono:'',
             emailDono:'',
             celularDono:''
+        }
+        this.validade = this.validade.bind(this)
+    }
+
+    handleChange = e =>{
+        const {name, value} = e.target;
+        this.setState = ({[name]: value})
+    }
+
+    validade(e){
+        this.handleChange(e)
+        const {name, value} = e.target;
+
+        if(!value){
+            switch(name){
+                case 'nomeDono':
+                case 'emailDono':
+                case 'celularDono':
+                    e.target.className = 'form-control is-invalid'
+                    break;
+            }
+        }else{
+            switch(name){
+                case 'nomeDono':
+                case 'emailDono':
+                case 'celularDono':
+                    e.target.className = 'form-control'
+                    break;
+            }
         }
     }
 
@@ -54,7 +84,31 @@ export default class CadastroRestaurante extends Component{
                             </div>
                             <div className='col'>
                                 <div className='fomulario-cadastro'>
-                                    <PreCadastro handleChange={this.props.handleChange} nextStep={this.props.nextStep}/>
+                                    <form className='pre-cadastro'>
+                                        <h2 className='text-center'> Cadastre sua empresa </h2>
+                                        <div className="form-group">
+                                            <label htmlFor="inputNome">Nome completo</label>
+                                            <input type="text" onChange={this.validade} onBlur={this.validade} name="nomeDono" className="form-control" id="inputNome" aria-describedby="emailHelp" placeholder="Nome do dono da empresa"/>
+                                            <InputErrorMessage field={this.state.nomeDono}/>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label htmlFor="inputEmail">E-mail</label>
+                                            <input type="text" onChange={this.validade} onBlur={this.validade}  name="emailDono" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="E-mail do dono da empresa"/>
+                                            <InputErrorMessage field={this.state.emailDono}/>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label htmlFor="inputCelular">Celular com DDD</label>
+                                            <input type="text" onChange={this.validade} onBlur={this.validade} name="celularDono" className="form-control" id="inputCelular" aria-describedby="emailHelp" placeholder="Celular do dono da empresa"/>
+                                            <InputErrorMessage field={this.state.celularDono}/>
+                                        </div> 
+                                        <div className="form-group flex-center">
+                                            <button type="submit" className="btn btn-light" onClick={() => this.props.nextStep(1)} >
+                                                INICIAR CADASTRO
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

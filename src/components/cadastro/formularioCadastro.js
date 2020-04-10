@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { cnpjMask, telefoneMask, cepMask } from './homeMasks';
+import  InputErrorMessage from './inputErrorMsg';
 
 export default class FormularioCadastro extends Component{
     
@@ -18,6 +20,7 @@ export default class FormularioCadastro extends Component{
             uf:'',
             transporte:''
         }
+        this.validade = this.validade.bind(this);
     }
 
     findCep = cep =>{
@@ -44,102 +47,108 @@ export default class FormularioCadastro extends Component{
         
     }
 
-    emptyCnpj(){
-        if(this.state.cnpj){
-            
-            return <div className="invalid-feedback">O CNPJ não pode estar vazio</div>
-        }
-        return null
-    }
-    emptyRazao(){
-        if(this.state.razao_social){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
-        }
-        return null
-    }
-    emptyNomeEmpresa(){
-        if(this.state.nome_empresa){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
-        }else
-            return <small id="emailHelp" className="form-text text-muted">Esse será o nome que aparecerá no aplicativo</small>
-    }
-    emptyTelefoneEmpresa(){
-        if(this.state.telefone_empresa){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
-        }
-        return null
-    }
-    emptyCep(){
-        if(this.state.cep){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
-        }
-        return null
-    }
-    emptyBairro(){
-        if(this.state.bairro){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
-        }
-        return null
-    
-    }
-    emptyLogradouro(){
-        if(this.state.logradouro){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
-        }
-        return null
+    handleChange = e =>{
+        const {name, value} = e.target;
 
-    }
-    emptyNumero(){
-        if(this.state.numero){
-            return <div className="invalid-feedback">Este campo não pode esta vazio</div>
+        switch(name){
+            case 'cnpj':
+                this.setState({[name]:cnpjMask(value)})
+                break;
+            case 'telefone_empresa':
+                this.setState({[name]:telefoneMask(value)})
+                break;
+            case 'cep':
+                this.setState({[name]:cepMask(value)})
+                break;
+            default:
+                this.setState({[name]:value})
+                break;
         }
-        return null
-
     }
 
+    validade(e){
+        this.handleChange(e)
+        const {name, value} = e.target;
 
-    process = e => {
-        if(this.state.cnpj === '')
-            e.target.className += ' is-invalid';
-        else return null
+        if(!value){
+
+            switch(name){
+                case 'cnpj':
+                    e.target.className = 'form-control cnpj is-invalid'
+                    break;
+                case 'razao_social':
+                case 'nome_empresa':
+                case 'telefone_empresa':
+                    e.target.className = 'form-control is-invalid'
+                    break;
+                case 'cep':
+                    e.target.className = 'form-control cep is-invalid'
+                    break;
+                case 'bairro':
+                case 'logradouro':
+                case 'numero':
+                    e.target.className = 'form-control cnpj is-invalid'
+                    break;
+            }
+        }else{
+
+            switch(name){
+                case 'cnpj':
+                    e.target.className = 'form-control cnpj'
+                    break;
+                case 'razao_social':
+                case 'nome_empresa':
+                case 'telefone_empresa':
+                    e.target.className = 'form-control'
+                    break;
+                case 'cep':
+                    e.target.className = 'form-control cep'
+                    break;
+                case 'bairro':
+                case 'logradouro':
+                case 'numero':
+                    e.target.className = 'form-control cnpj'
+                    break;
+
+            }
+        }
     }
 
     render(){
         
         if(this.props.currentStep !== 1)
             return null
-
         return(
             <>
                 <div className='cadastroEmpresa center'>
                     <div className="form-group">
                         <label htmlFor="inputCnpj">CNPJ</label>
-                        <input type="text"  name="cnpj"  onChange={this.props.handleChange} onBlur={this.process} className="form-control cnpj" id="inputCnpj" placeholder="Qual é o CNPJ da empresa?"/>
-                        {this.emptyCnpj()}
+                        <input type="text"  name="cnpj"  onChange={this.validade} onBlur={this.validade} value={this.state.cnpj} className="form-control cnpj" id="inputCnpj" placeholder="Qual é o CNPJ da empresa?"/>
+                        <InputErrorMessage field={this.state.cnpj}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputRazaoSocial">Razão social</label>
-                        <input type="text"  name="razao_social"  onChange={this.props.handleChange} className="form-control" id="inputRazaoSocial" value={this.props.razaoSocial} placeholder="Razão social da empresa"/>
-                        {this.emptyRazao()}
+                        <input type="text"  name="razao_social"  onChange={this.validade} onBlur={this.validade} className="form-control" id="inputRazaoSocial" value={this.state.razao_social} placeholder="Razão social da empresa"/>
+                        <InputErrorMessage field={this.state.razao_social}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputNomeEmpresa">Nome da empresa</label>
-                        <input type="text"  name="nome_empresa"  onChange={this.props.handleChange} className="form-control" id="inputNomeEmpresa" value={this.props.nomeEmpresa} placeholder="Nome da empresa"/>
-                        {this.emptyNomeEmpresa()}
+                        <input type="text"  name="nome_empresa"  onChange={this.validade} onBlur={this.validade} className="form-control" id="inputNomeEmpresa" value={this.state.nome_empresa} placeholder="Nome da empresa"/>
+                        <InputErrorMessage field={this.state.nome_empresa}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputTelefoneEmpresa">Telefone</label>
-                        <input type="text"  name="telefone_empresa"  onChange={this.props.handleChange} className="form-control" value={this.props.telefone} id="inputTelefoneEmpresa" placeholder="Qual o telefone da sua empresa?"/>
-                        {this.emptyTelefoneEmpresa()}
+                        <input type="text"  name="telefone_empresa"  onChange={this.validade} onBlur={this.validade} className="form-control" value={this.state.telefone_empresa} id="inputTelefoneEmpresa" placeholder="Qual o telefone da sua empresa?"/>
+                        <InputErrorMessage field={this.state.telefone_empresa}/>
                     </div>
                         
                     <div className="form-group">
                         <label htmlFor="inputCep">CEP</label>
-                        <input type="text"  name="cep" onBlur={() => this.findCep(this.state.cep)} onChange={this.props.handleChange}  className="form-control cep" value={this.props.cep} id="inputCep" placeholder="CEP da empresa"/>
-                        {this.emptyCep()}
+                        <input type="text"  name="cep" onBlur={() => this.findCep(this.state.cep)} onChange={this.validade} value={this.state.cep} className="form-control cep" id="inputCep" placeholder="CEP da empresa"/>
+                        <InputErrorMessage field={this.state.cep}/>
                     </div>
     
                     <div className="form-row">
@@ -155,20 +164,20 @@ export default class FormularioCadastro extends Component{
     
                     <div className="form-group">
                         <label htmlFor="inputBairro">Bairro</label>
-                        <input type="text"  name="bairro"  onChange={this.props.handleChange} className="form-control cnpj" value={this.state.bairro} id="inputBairro" placeholder="Bairro da empresa"/>
-                        {this.emptyBairro()}
+                        <input type="text"  name="bairro"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj" value={this.state.bairro} id="inputBairro" placeholder="Bairro da empresa"/>
+                        <InputErrorMessage field={this.state.bairro}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputLogradouro">Logradouro</label>
-                        <input type="text"  name="logradouro"  onChange={this.props.handleChange} className="form-control cnpj" value={this.state.logradouro} id="inputLogradouro" placeholder="Logradouro da empresa"/>
-                        {this.emptyLogradouro()}
+                        <input type="text"  name="logradouro"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj" value={this.state.logradouro} id="inputLogradouro" placeholder="Logradouro da empresa"/>
+                        <InputErrorMessage field={this.state.logradouro}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputNumero">Numero</label>
-                        <input type="text"  name="numero"  onChange={this.props.handleChange} className="form-control cnpj"  value={this.props.numero}id="inputNumero" placeholder="Número do endereço"/>
-                        {this.emptyNumero()}
+                        <input type="text"  name="numero"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj"  value={this.props.numero}id="inputNumero" placeholder="Número do endereço"/>
+                        <InputErrorMessage field={this.state.numero}/>
                     </div>
     
                     <div className="form-group">

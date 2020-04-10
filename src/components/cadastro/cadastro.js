@@ -4,9 +4,6 @@ import Step1 from './formularioCadastro';
 import Step2 from './confirmacaoCadastro';
 import Step3 from './cadastroFinalizado';
 
-import { inserir, uploadFoto } from '../../services/cadastro-empresa-services'
-import { telefoneMask, cnpjMask, cepMask } from './homeMasks';
-import axios from 'axios';
 
 export default class Cadastro extends Component{
 
@@ -27,30 +24,11 @@ export default class Cadastro extends Component{
             transporte:''
         }
 
-        this.nextStep = this.nextStep.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        
         this.handleSubmit = this.handleSubmit.bind(this);
         this.findCep = this.findCep.bind(this);
         this.fileHandler = this.fileHandler.bind(this);
     }
-
-    // handleChange(event) {
-    //     const {name, value} = event.target
-
-    //     switch(name){
-    //         case 'cnpj':
-    //             this.setState({[name]: cnpjMask(value)})
-    //             break;
-    //         case 'telefone_empresa':
-    //             this.setState({[name]: telefoneMask(value)})
-    //             break;
-    //         case 'cep':
-    //             this.setState({[name]: cepMask(value)})
-    //             break;
-    //         default:
-    //             this.setState({[name]: value})
-    //             break;
-    //     }
 
 
     // }
