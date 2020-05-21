@@ -176,22 +176,22 @@ export default class FormularioCadastro extends Component{
     
                     <div className="form-group">
                         <label htmlFor="inputNumero">Numero</label>
-                        <input type="text"  name="numero"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj"  value={this.props.numero}id="inputNumero" placeholder="Número do endereço"/>
+                        <input type="text"  name="numero"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj"  id="inputNumero" placeholder="Número do endereço"/>
                         <InputErrorMessage field={this.state.numero}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputComplemento">Complemento</label>
-                        <input type="text"  name="complemento" onChange={this.props.handleChange} className="form-control" id="inputComplemento" placeholder="Complemento do endereço"/>
+                        <input type="text"  name="complemento" onChange={this.handleChange} className="form-control" id="inputComplemento" placeholder="Complemento do endereço"/>
                     </div>
                     <div className="form-group margin-mini-bot">
                         <label htmlFor="inputComplemento">Sua empresa possui seviço de transporte?</label><br/>
                         <div className="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="inputSim" onChange={this.props.handleChange}  name="transporte" value="1" className="custom-control-input" />
+                            <input type="radio" id="inputSim" onChange={this.handleChange}  name="transporte" value="1" className="custom-control-input" />
                             <label className="custom-control-label" htmlFor="inputSim">Sim</label>
                         </div>
                         <div className="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="inputNao" onChange={this.props.handleChange}  name="transporte" value="0" className="custom-control-input" />
+                            <input type="radio" id="inputNao" onChange={this.handleChange}  name="transporte" value="0" className="custom-control-input" />
                             <label className="custom-control-label" htmlFor="inputNao">Não</label>
                         </div>
                     </div>
@@ -200,7 +200,7 @@ export default class FormularioCadastro extends Component{
                         <button 
                             type="button"  
                             className="btn btn-light"
-                            onClick={() => this.props.nextStep(2)}>
+                            onClick={e => this.props.nextStep(2)}>
                         
                             Continuar
                         </button>

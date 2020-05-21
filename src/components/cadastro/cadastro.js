@@ -60,9 +60,9 @@ export default class Cadastro extends Component{
         
     // }
 
-    // nextStep(step){
-    //     return this.setState({ currentStep: step})
-    // }
+    nextStep(step){
+        return this.setState({ currentStep: step})
+    }
 
     
 

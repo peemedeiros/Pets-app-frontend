@@ -19,6 +19,8 @@ export default class Home extends Component{
             currentStep:0,
             empresa: []
         }
+        this.nextStep = this.nextStep.bind(this);
+        this.cadastroEmpresa = this.cadastroEmpresa.bind(this);
     }
 
     handleChange = e =>{
@@ -30,9 +32,10 @@ export default class Home extends Component{
         return this.setState({ currentStep: step})
     }
 
-
-    fileHandler = e =>{
-        this.setState({ logo:e.target.files[0]});
+    cadastroEmpresa(empresas){
+        this.setState({
+            empresa:[empresas]
+        });
     }
     
     render(){
@@ -42,7 +45,8 @@ export default class Home extends Component{
                 <Step0 
                     currentStep={this.state.currentStep} 
                     handleChange={this.handleChange}
-                    nextStep={this.nextStep}/>
+                    nextStep={this.nextStep}
+                    cadastroEmpresa={this.cadastroEmpresa}/>
                 <Step1 
                     currentStep={this.state.currentStep}
                     handleChange={this.handleChange}

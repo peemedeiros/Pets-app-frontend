@@ -11,6 +11,15 @@ export default class ConfirmarCadastro extends Component{
         }
     }
 
+    handleChange = e =>{
+        const {name, value} = e.target;
+        this.setState = ({[name]: value})
+    }
+
+    fileHandler = e =>{
+        this.setState({ logo:e.target.files[0]});
+    }
+
     //Criar function para enviar os dados 
     //armazenados no estado do componente 
     //atual para o componente pai
@@ -24,7 +33,7 @@ export default class ConfirmarCadastro extends Component{
                 <div className="formularioConfirmacao center">
                     <div className="form-group">
                         <label htmlFor="inputSenha">Senha</label>
-                        <input type="password" name='senha' onChange={this.props.handleChange} className="form-control cnpj" id="inputSenha" placeholder="*********"/>
+                        <input type="password" name='senha' onChange={this.handleChange} className="form-control cnpj" id="inputSenha" placeholder="*********"/>
                         <small id="emailHelp" className="form-text text-muted">Não compartilhe sua senha com ninguém.</small>
                     </div>
     
@@ -40,7 +49,7 @@ export default class ConfirmarCadastro extends Component{
                         </label>
                         <input  type="file"
                                 name='logo' 
-                                onChange={this.props.fileHandler} 
+                                onChange={this.fileHandler} 
                                 className="form-control hide" 
                                 id="inputLogoEmpresa"/>
                         <small id="logoHelper" className="form-text text-muted">Essa será sua foto no aplicativo</small>

@@ -22,7 +22,8 @@ export default class CadastroRestaurante extends Component{
 
     handleChange = e =>{
         const {name, value} = e.target;
-        this.setState = ({[name]: value})
+        this.setState = ({[name]: value});
+        console.log(name+': '+value);
     }
 
     validade(e){
@@ -48,9 +49,17 @@ export default class CadastroRestaurante extends Component{
         }
     }
 
+    handleSubmit = e =>{
+        e.preventDefault();
+        this.props.cadastroEmpresa(this.state);
+        console.log(this.state);
+        this.props.nextStep(1);
+    }
+
+    
+
 
     render(){
-
         if(this.props.currentStep !== 0)
             return null
 
@@ -84,7 +93,7 @@ export default class CadastroRestaurante extends Component{
                             </div>
                             <div className='col'>
                                 <div className='fomulario-cadastro'>
-                                    <form className='pre-cadastro'>
+                                    <form className='pre-cadastro' onSubmit={this.handleSubmit}>
                                         <h2 className='text-center'> Cadastre sua empresa </h2>
                                         <div className="form-group">
                                             <label htmlFor="inputNome">Nome completo</label>
@@ -104,7 +113,7 @@ export default class CadastroRestaurante extends Component{
                                             <InputErrorMessage field={this.state.celularDono}/>
                                         </div> 
                                         <div className="form-group flex-center">
-                                            <button type="submit" className="btn btn-light" onClick={() => this.props.nextStep(1)} >
+                                            <button type="submit" className="btn btn-light" >
                                                 INICIAR CADASTRO
                                             </button>
                                         </div>
