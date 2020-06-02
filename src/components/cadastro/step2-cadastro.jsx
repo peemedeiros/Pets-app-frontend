@@ -116,7 +116,7 @@ export default class FormularioCadastro extends Component{
 
     render(){
         
-        if(this.props.currentStep !== 1)
+        if(this.props.currentStep !== 2)
             return null
         return(
             <>

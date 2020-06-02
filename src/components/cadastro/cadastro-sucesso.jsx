@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default class CadastroFinalizado extends Component{
     render(){
         
-        if(this.props.currentStep !== 3)
+        if(this.props.currentStep !== 2)
             return null
         
         return(

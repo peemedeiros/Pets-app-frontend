@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import PreCadastro from './precadastro';
 import  InputErrorMessage from './inputErrorMsg';
 
 import logo from '../../assets/logo.png';
@@ -12,52 +11,54 @@ import arrow from '../../assets/arrow.png';
 export default class CadastroRestaurante extends Component{
     constructor(){
         super()
-        this.state = {
-            nomeDono:'',
-            emailDono:'',
-            celularDono:''
+        this.stateInicial = {
+            nome:'',
+            email:'',
+            celular:'',
+            password:'',
+            password_confirmation:'',
+            tipo_cadastro:1
         }
-        this.validade = this.validade.bind(this)
+        this.state = this.stateInicial
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange = e =>{
-        const {name, value} = e.target;
-        this.setState = ({[name]: value});
-        console.log(name+': '+value);
-    }
 
-    validade(e){
-        this.handleChange(e)
         const {name, value} = e.target;
+        this.setState({[name]: value})
+        console.log(name + " " + value)
 
         if(!value){
             switch(name){
-                case 'nomeDono':
-                case 'emailDono':
-                case 'celularDono':
+                case 'nome':
+                case 'email':
+                case 'celular':
+                case 'password':
+                case 'password_confirmation':
                     e.target.className = 'form-control is-invalid'
                     break;
             }
         }else{
             switch(name){
-                case 'nomeDono':
-                case 'emailDono':
-                case 'celularDono':
+                case 'nome':
+                case 'email':
+                case 'celular':
+                case 'password':
+                case 'password_confirmation':
                     e.target.className = 'form-control'
                     break;
             }
         }
+        
+
     }
 
-    handleSubmit = e =>{
+    handleSubmit = async e =>{
         e.preventDefault();
-        this.props.cadastroEmpresa(this.state);
+        await this.props.cadastrarUsuario(this.state);
         console.log(this.state);
-        this.props.nextStep(1);
     }
-
-    
-
 
     render(){
         if(this.props.currentStep !== 0)
@@ -94,29 +95,45 @@ export default class CadastroRestaurante extends Component{
                             <div className='col'>
                                 <div className='fomulario-cadastro'>
                                     <form className='pre-cadastro' onSubmit={this.handleSubmit}>
-                                        <h2 className='text-center'> Cadastre sua empresa </h2>
+
+                                        <h2 className='text-center'> Cadastre-se </h2>
+
                                         <div className="form-group">
                                             <label htmlFor="inputNome">Nome completo</label>
-                                            <input type="text" onChange={this.validade} onBlur={this.validade} name="nomeDono" className="form-control" id="inputNome" aria-describedby="emailHelp" placeholder="Nome do dono da empresa"/>
-                                            <InputErrorMessage field={this.state.nomeDono}/>
+                                            <input type="text" value={this.state.nome} onChange={this.handleChange} onBlur={this.handleChange} name="nome" className="form-control" id="inputNome" placeholder="Nome do dono da empresa"/>
+                                            <InputErrorMessage field={this.state.nome}/>
                                         </div>
 
                                         <div className="form-group">
                                             <label htmlFor="inputEmail">E-mail</label>
-                                            <input type="text" onChange={this.validade} onBlur={this.validade}  name="emailDono" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="E-mail do dono da empresa"/>
-                                            <InputErrorMessage field={this.state.emailDono}/>
+                                            <input type="text" value={this.state.email} onChange={this.handleChange} onBlur={this.handleChange}  name="email" className="form-control" id="inputEmail" placeholder="E-mail do dono da empresa"/>
+                                            <InputErrorMessage field={this.state.email}/>
                                         </div>
 
                                         <div className="form-group">
                                             <label htmlFor="inputCelular">Celular com DDD</label>
-                                            <input type="text" onChange={this.validade} onBlur={this.validade} name="celularDono" className="form-control" id="inputCelular" aria-describedby="emailHelp" placeholder="Celular do dono da empresa"/>
-                                            <InputErrorMessage field={this.state.celularDono}/>
+                                            <input type="text" value={this.state.celular} onChange={this.handleChange} onBlur={this.handleChange} name="celular" className="form-control" id="inputCelular" placeholder="Celular do dono da empresa"/>
+                                            <InputErrorMessage field={this.state.celular}/>
                                         </div> 
+
+                                        <div className="form-group">
+                                            <label htmlFor="inputCelular">Senha</label>
+                                            <input type="password" value={this.state.password} onChange={this.handleChange} onBlur={this.handleChange} name="password" className="form-control" id="inputPassword" placeholder="*********"/>
+                                            <InputErrorMessage field={this.state.celular}/>
+                                        </div> 
+
+                                        <div className="form-group">
+                                            <label htmlFor="inputCelular">Confirmar senha</label>
+                                            <input type="password" value={this.state.password_confirmation} onChange={this.handleChange} onBlur={this.handleChange} name="password_confirmation" className="form-control" id="inputPasswordConfirmation" placeholder="*********"/>
+                                            <InputErrorMessage field={this.state.celular}/>
+                                        </div> 
+
                                         <div className="form-group flex-center">
-                                            <button type="submit" className="btn btn-light" >
+                                            <button type="submit" className="btn btn-light">
                                                 INICIAR CADASTRO
                                             </button>
                                         </div>
+
                                     </form>
                                 </div>
                             </div>
