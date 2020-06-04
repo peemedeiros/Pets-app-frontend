@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './login.css'
 
-import FormularioLogin from "./formularioLogin";
+import Formulario from "./formulario";
 
 const URL = "http://127.0.0.1:8000/api/v1/login";
 
@@ -18,10 +18,9 @@ export default class login extends Component{
 
     realizarLogin = async usuario => {
         try {
-            const response = await axios.post(URL,usuario, config)
-            console.log(response.data)
+            return await axios.post(URL,usuario, config)
         } catch (error) {
-            console.log(error.response.data)
+           return error.response
         }
     }
     
@@ -43,7 +42,7 @@ export default class login extends Component{
                     </div>
 
                     <div className="container">
-                        <FormularioLogin realizarLogin={this.realizarLogin}/>
+                        <Formulario realizarLogin={this.realizarLogin} />
                     </div>
                     
                 </div>

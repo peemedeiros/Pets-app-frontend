@@ -17,7 +17,8 @@ export default class CadastroRestaurante extends Component{
             celular:'',
             password:'',
             password_confirmation:'',
-            tipo_cadastro:1
+            tipo_cadastro:1,
+            disabled:false,
         }
         this.state = this.stateInicial
         this.handleChange = this.handleChange.bind(this)
@@ -50,19 +51,23 @@ export default class CadastroRestaurante extends Component{
                     break;
             }
         }
-        
-
     }
 
     handleSubmit = async e =>{
         e.preventDefault();
+        this.setState({ disabled: true});
         await this.props.cadastrarUsuario(this.state);
-        console.log(this.state);
+        this.setState({ disabled: false});
+        this.setState(this.stateInicial);
     }
 
     render(){
         if(this.props.currentStep !== 0)
             return null
+        
+        if(this.state.disabled) var loading = "d-block"
+        else
+            var loading = "d-none"
 
         return(
             <>
@@ -129,8 +134,13 @@ export default class CadastroRestaurante extends Component{
                                         </div> 
 
                                         <div className="form-group flex-center">
-                                            <button type="submit" className="btn btn-light">
-                                                INICIAR CADASTRO
+                                            <button type="submit" disabled={this.state.disabled} className="btn btn-light">
+                                                <div className="spinner-row">
+                                                    INICIAR CADASTRO
+                                                    <div className={`spinner-border ml-2 ${loading}`} role="status">
+                                                        <span className="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
                                             </button>
                                         </div>
 

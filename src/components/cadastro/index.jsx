@@ -38,10 +38,10 @@ export default class Home extends Component{
     cadastrarUsuario = async usuario => {
         try {
             const response = await axios.post(URL,usuario, config)
+            this.setState({currentStep: 2})
             console.log(response.data)
         } catch (error) {
             console.log(error.response.data)
-            this.setState({currentStep: 2})
         }
     }
 
@@ -59,15 +59,14 @@ export default class Home extends Component{
 
                 <Step0 
                     currentStep={this.state.currentStep} 
-                    
                     nextStep={this.nextStep}
                     cadastrarUsuario={this.cadastrarUsuario}/>
                 <Step1 
                     currentStep={this.state.currentStep}
-                    
                     nextStep={this.nextStep}
                     inserindoDadosUsuario={this.inserindoDadosUsuario}/>
-                <Step2 
+                <Step2
+                    nextStep={this.nextStep}
                     currentStep={this.state.currentStep}/>
             </>
         )

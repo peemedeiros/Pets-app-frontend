@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { cnpjMask, telefoneMask, cepMask } from './homeMasks';
 import  InputErrorMessage from './inputErrorMsg';
 
 export default class FormularioCadastro extends Component{

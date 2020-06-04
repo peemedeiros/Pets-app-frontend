@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'; 
 
 export default class CadastroFinalizado extends Component{
     render(){
@@ -18,8 +17,8 @@ export default class CadastroFinalizado extends Component{
                         Cadastro realizado com sucesso, continue para acessar o painel da sua empresa
                     </p>
 
-                    <button type="buttom" className="btn btn-light center">
-                        <Link className="nav-link" to="/"> Continuar </Link>
+                    <button type="buttom" onClick={() => this.props.nextStep(0)} className="btn btn-light center">
+                        Continuar
                     </button>
                 </div>
 

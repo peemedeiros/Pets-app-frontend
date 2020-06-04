@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Home from './components/cadastro/home';
-import Login from './components/login/login';
+import Home from './components/cadastro';
+import Login from './components/login/index'
+import AppLandPage from './components/usuario/appLandPage'
 
 
 
@@ -13,6 +14,7 @@ export default function Routes() {
                 
                 <Route path='/cadastro' exact component={Home}/>
                 <Route path='/login' exact component={Login}/>
+                <Route path='/app' exact component={AppLandPage} />
 
             </Switch>
         </BrowserRouter>

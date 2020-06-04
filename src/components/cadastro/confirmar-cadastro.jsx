@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import camera from '../../assets/camera.png';
 
 export default class ConfirmarCadastro extends Component{
 

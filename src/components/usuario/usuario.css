@@ -1,0 +1,146 @@
+
+.sessao_total{
+    width: 100%;
+    min-height: 1200px;
+    height: auto;
+    background-color: #FFF5F3;
+}
+/* Sessao 1 */
+
+.sessao1{
+    width: 100%;
+    height: 150px;
+    background-color: #FFC296;
+}
+
+
+.logo-box{
+    
+    width:145px;
+    height: 145px;
+
+}
+
+.logo-box img{
+    width: inherit;
+    height: inherit;
+}
+
+.text_titulo{
+    font-size: 42px;
+    padding-top: 40px;
+    color:  white;
+}
+
+/* sessao 2 */
+
+.sessao2{
+    width: 100%;
+    height: 600px;
+    background-image: linear-gradient(#FFC296, #FFD18C);
+}
+
+.foto-app{
+    width: 300px;
+    height: 500px;
+    margin-left: 100px;
+    -webkit-box-shadow: 6px 6px 10px #999; 
+	-moz-box-shadow: 6px 6px 10px #999;
+	box-shadow: 6px 6px 10px #999;	
+}
+
+.foto-app img{
+    width: inherit;
+    height: inherit;
+}
+
+.text-app{
+    font-size: 50px;
+    padding-top: 120px;
+    padding-left: 50px;
+}
+
+.box-qrcode{
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    position: fixed;
+    font-size: 30px;
+    text-align: center;
+    /* background-color: blue; */
+    margin-top: 40px;
+    
+}
+
+.box-qrcode img{
+    width: 250px;
+    height: 250px;
+    margin-top: 5px;
+}
+
+
+.area-titulo{
+    width: 100%;
+    height: 100px;
+    text-align: left;
+    font-size: 60px;
+    padding-left: 40px;
+}
+
+.app-intro{
+    font-size: 32px;
+    text-align: justify;
+    padding-left: 50px;;
+}
+
+.box-icon{
+    padding-left: 70px;
+    padding-top: 20px;
+}
+
+.box-icon img{
+    width:inherit;
+    height: 450px;
+    background-size: cover;
+}
+
+/* sessao 4 */
+
+.sessao4{
+    width: 100%;
+    height: 600px;
+    padding-left: 50px;
+}
+
+.tela-app{
+    width: 280px;
+    height: 480px;
+    
+}
+
+.tela-app img{
+    width: inherit;
+    height: inherit;
+    background-size: cover;
+    -webkit-box-shadow: 6px 6px 10px #999; 
+	-moz-box-shadow: 6px 6px 10px #999;
+	box-shadow: 6px 6px 10px #999;	
+}
+
+/* sessao 5 */
+
+.sessao5{
+    width: 100%;
+    height: 400px;
+    
+}
+
+.txt-app{
+    font-size: 30px;
+    padding-left: 70px;
+}
+
+.text-servicos{
+    padding-left: 90px;
+    text-align: justify;
+}

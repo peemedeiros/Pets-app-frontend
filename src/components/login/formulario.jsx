@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import AlertError from '../errors/alertError';
+import SpinnerLoader from '../template/spinnerLoader';
+
+const exceptions = []
 
 export default class formularioLogin extends Component{
 
@@ -7,7 +11,12 @@ export default class formularioLogin extends Component{
         super()
         this.stateInicial = {
             email:'',
-            password:''
+            password:'',
+            disabled:false,
+            errors:{
+                alert:false,
+                error_data:''
+            }
         }
         this.state = this.stateInicial
     }
@@ -19,14 +28,31 @@ export default class formularioLogin extends Component{
 
     handleSubmit = async e => {
         e.preventDefault();
-        await this.props.realizarLogin(this.state)
-    }
+        this.setState({ disabled: true })
+        const res = await this.props.realizarLogin(this.state)
+        
+        //trazendo erro
+        if(res.status != 200){
+            exceptions.push(res.data.errors)
 
+            this.setState({ errors:{...this.state.errors, alert:true, error_data:exceptions} })
+            // this.setState({ errors:{...this.state.errors, error_data:exceptions} })
+
+            // console.log(this.state.errors)
+            // console.log(this.state.errors.error_data[0])
+            
+        }
+
+        this.setState({ disabled: false })
+    }
     render(){
+
         return(
             <div className="container">
                 <h2>Painel da Empresa</h2>
                 <h5>Faça o controle da sua empresa</h5>
+                
+                <AlertError error={this.state.errors.alert} error_data={this.state.errors.error_data[0]}/>
 
                 <form className="form_login" onSubmit={this.handleSubmit}>
 
@@ -45,8 +71,11 @@ export default class formularioLogin extends Component{
                     </div>
 
                     <div className="form-group flex-center">
-                        <button type="submit" class="btn btn-light btn-lg btn-block">
-                             Login 
+                        <button type="submit" class="btn btn-light btn-lg btn-block" disabled={this.state.disabled}>
+                            <div className="spinner-row">
+                                Login 
+                                <SpinnerLoader status={this.state.disabled}/>
+                            </div>
                         </button>
                     </div>
 
@@ -55,7 +84,7 @@ export default class formularioLogin extends Component{
                     </div>
 
                     <div className="titulo_form">
-                        <Link className="nav-link" to="/"><h8>Cadastrar-se</h8></Link>
+                        <Link className="nav-link" to="/cadastro"><h8>Cadastrar-se</h8></Link>
                     </div>
                 </form>
             </div>
