@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import  InputErrorMessage from './inputErrorMsg';
+import InputErrorMessage from './inputErrorMsg';
+import SpinnerButton from '../template/spinnerLoader';
+import { telefoneMask } from '../../functions/homeMasks';
+import Formulario from './formulario';
 
 import logo from '../../assets/logo.png';
 import plano1 from '../../assets/transporte.jpg';
@@ -19,16 +22,18 @@ export default class CadastroRestaurante extends Component{
             password_confirmation:'',
             tipo_cadastro:1,
             disabled:false,
+            errors:{
+                alert:false,
+                error_data:[]
+            }
         }
         this.state = this.stateInicial
         this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange = e =>{
-
         const {name, value} = e.target;
         this.setState({[name]: value})
-        console.log(name + " " + value)
 
         if(!value){
             switch(name){
@@ -40,11 +45,14 @@ export default class CadastroRestaurante extends Component{
                     e.target.className = 'form-control is-invalid'
                     break;
             }
-        }else{
+        }else if(value){
             switch(name){
+                case 'celular':
+                    this.setState({[name]: telefoneMask(value)})
+                    e.target.className = 'form-control'
+                    break;
                 case 'nome':
                 case 'email':
-                case 'celular':
                 case 'password':
                 case 'password_confirmation':
                     e.target.className = 'form-control'
@@ -56,19 +64,21 @@ export default class CadastroRestaurante extends Component{
     handleSubmit = async e =>{
         e.preventDefault();
         this.setState({ disabled: true});
-        await this.props.cadastrarUsuario(this.state);
-        this.setState({ disabled: false});
-        this.setState(this.stateInicial);
+
+        const res = await this.props.cadastrarUsuario(this.state);
+        
+        if(res.status != 200){
+            this.setState({
+                errors:{...this.state.errors, alert:true, error_data:res.data.errors}
+            })
+        }
+        this.setState({disabled: false});
     }
 
     render(){
         if(this.props.currentStep !== 0)
             return null
         
-        if(this.state.disabled) var loading = "d-block"
-        else
-            var loading = "d-none"
-
         return(
             <>
                 <div className='section1'>
@@ -105,41 +115,39 @@ export default class CadastroRestaurante extends Component{
 
                                         <div className="form-group">
                                             <label htmlFor="inputNome">Nome completo</label>
-                                            <input type="text" value={this.state.nome} onChange={this.handleChange} onBlur={this.handleChange} name="nome" className="form-control" id="inputNome" placeholder="Nome do dono da empresa"/>
-                                            <InputErrorMessage field={this.state.nome}/>
+                                            <input type="text" value={this.state.nome} onChange={this.handleChange} onBlur={this.handleChange} name="nome" className="form-control" id="inputNome" placeholder="Nome do dono da empresa" required/>
+                                            <InputErrorMessage field={this.state.nome} />
                                         </div>
 
                                         <div className="form-group">
                                             <label htmlFor="inputEmail">E-mail</label>
-                                            <input type="text" value={this.state.email} onChange={this.handleChange} onBlur={this.handleChange}  name="email" className="form-control" id="inputEmail" placeholder="E-mail do dono da empresa"/>
+                                            <input type="email" value={this.state.email} onChange={this.handleChange} onBlur={this.handleChange}  name="email" className="form-control" id="inputEmail" placeholder="E-mail do dono da empresa" required/>
                                             <InputErrorMessage field={this.state.email}/>
                                         </div>
 
                                         <div className="form-group">
                                             <label htmlFor="inputCelular">Celular com DDD</label>
-                                            <input type="text" value={this.state.celular} onChange={this.handleChange} onBlur={this.handleChange} name="celular" className="form-control" id="inputCelular" placeholder="Celular do dono da empresa"/>
+                                            <input type="text" value={this.state.celular} onChange={this.handleChange} onBlur={this.handleChange} name="celular" className="form-control" id="inputCelular" placeholder="Celular do dono da empresa" required/>
                                             <InputErrorMessage field={this.state.celular}/>
                                         </div> 
 
                                         <div className="form-group">
-                                            <label htmlFor="inputCelular">Senha</label>
-                                            <input type="password" value={this.state.password} onChange={this.handleChange} onBlur={this.handleChange} name="password" className="form-control" id="inputPassword" placeholder="*********"/>
-                                            <InputErrorMessage field={this.state.celular}/>
+                                            <label htmlFor="inputPassword">Senha</label>
+                                            <input type="password" value={this.state.password} onChange={this.handleChange} onBlur={this.handleChange} name="password" className="form-control" id="inputPassword" placeholder="*********" required/>
+                                            <InputErrorMessage field={this.state.password}/>
                                         </div> 
 
                                         <div className="form-group">
-                                            <label htmlFor="inputCelular">Confirmar senha</label>
-                                            <input type="password" value={this.state.password_confirmation} onChange={this.handleChange} onBlur={this.handleChange} name="password_confirmation" className="form-control" id="inputPasswordConfirmation" placeholder="*********"/>
-                                            <InputErrorMessage field={this.state.celular}/>
+                                            <label htmlFor="inputPasswordConfirmation">Confirmar senha</label>
+                                            <input type="password" value={this.state.password_confirmation} onChange={this.handleChange} onBlur={this.handleChange} name="password_confirmation" className="form-control" id="inputPasswordConfirmation" placeholder="*********" required/>
+                                            <InputErrorMessage field={this.state.password_confirmation}/>
                                         </div> 
 
                                         <div className="form-group flex-center">
                                             <button type="submit" disabled={this.state.disabled} className="btn btn-light">
                                                 <div className="spinner-row">
                                                     INICIAR CADASTRO
-                                                    <div className={`spinner-border ml-2 ${loading}`} role="status">
-                                                        <span className="sr-only">Loading...</span>
-                                                    </div>
+                                                    <SpinnerButton status={this.state.disabled} />
                                                 </div>
                                             </button>
                                         </div>

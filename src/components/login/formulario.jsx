@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AlertError from '../errors/alertError';
 import SpinnerLoader from '../template/spinnerLoader';
 
-const exceptions = []
+const TOKEN = '@PetsApp:token'
 
 export default class formularioLogin extends Component{
 
@@ -15,34 +15,38 @@ export default class formularioLogin extends Component{
             disabled:false,
             errors:{
                 alert:false,
-                error_data:''
+                error_data:[]
             }
         }
         this.state = this.stateInicial
     }
 
+    //Atualiza os estatos dos inputs
     handleChange = e =>{
         const {name, value} = e.target;
         this.setState({[name]: value})
     }
 
+    //Retorna a resposta da requisição na API 
     handleSubmit = async e => {
         e.preventDefault();
+        
+        //Desabilita o botão para que não haja problemas como dupla requisição.
         this.setState({ disabled: true })
         const res = await this.props.realizarLogin(this.state)
         
-        //trazendo erro
+        //Traz os erros
         if(res.status != 200){
-            exceptions.push(res.data.errors)
-
-            this.setState({ errors:{...this.state.errors, alert:true, error_data:exceptions} })
-            // this.setState({ errors:{...this.state.errors, error_data:exceptions} })
-
-            // console.log(this.state.errors)
-            // console.log(this.state.errors.error_data[0])
-            
+            if(res.status === 422)
+                this.setState({ errors:{...this.state.errors, alert:true, error_data:Object.values(res.data.errors)} })
+            else
+                this.setState({ errors:{...this.state.errors, alert:true, error_data:["Usuário não encontrado!"]} })
         }
+        
+        //Envia o token para o localStorage
+        localStorage.setItem(TOKEN,JSON.stringify(res.data))
 
+        //Reabilita o botão após o retorno da requisição
         this.setState({ disabled: false })
     }
     render(){
@@ -52,7 +56,7 @@ export default class formularioLogin extends Component{
                 <h2>Painel da Empresa</h2>
                 <h5>Faça o controle da sua empresa</h5>
                 
-                <AlertError error={this.state.errors.alert} error_data={this.state.errors.error_data[0]}/>
+                <AlertError error={this.state.errors.alert} error_data={this.state.errors.error_data}/>
 
                 <form className="form_login" onSubmit={this.handleSubmit}>
 

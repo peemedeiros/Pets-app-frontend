@@ -16,6 +16,8 @@ const config = {
 
 export default class login extends Component{
 
+    //realiza a requisição de login na API
+    
     realizarLogin = async usuario => {
         try {
             return await axios.post(URL,usuario, config)

@@ -81,3 +81,6 @@
 .titulo_form a:hover{
     text-decoration: underline;
 }
+.errors-list{
+    font-size: 15px;
+}

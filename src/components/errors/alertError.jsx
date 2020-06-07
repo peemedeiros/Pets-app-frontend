@@ -7,18 +7,19 @@ export default props => {
     return(
         
         <div className={`alert alert-danger`}>
+            <i className="fa fa-remove mr-2"></i> 
+                Ocorreu um erro!
             <ul>
-                <h5>
-                    <i className="fa fa-remove mr-2"></i> 
-                    Ocorreu um erro!
-                    {props.error_data.map(errors => {
+                <h6>
+                    {props.error_data.map((errors, i) => {
                         return (
-                            <li>{errors}</li>
+                            <li className="errors-list" key={i} >{errors}</li>
                         )
                     })}
-                </h5>
+                </h6>
                 
             </ul>
         </div>
     )
+
 }

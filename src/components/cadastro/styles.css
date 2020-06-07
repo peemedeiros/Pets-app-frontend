@@ -1,6 +1,7 @@
 .section1{
     width: 100%;
-    height: 720px;
+    height: auto;
+    min-height: 720px;
     background-image: linear-gradient(#FFC296, #FFD18C);
     /* background-image: url('../../assets/section1bg.png'); */
     background-repeat: no-repeat;
@@ -65,15 +66,16 @@
   }
   .fomulario-cadastro{
     width: 100%;
-    height: 720px;
-
+    min-height: 720px;
+    height: auto;    
     display: flex;
     justify-content: center;
     padding-bottom: 15px;
   }
   .pre-cadastro{
     width: 90%;
-    height: 650px;
+    min-height: 650px;
+    height: auto;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 8px 8px 1px #33333391;
