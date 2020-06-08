@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import InputErrorMessage from './inputErrorMsg';
 import SpinnerButton from '../template/spinnerLoader';
 import { telefoneMask } from '../../functions/homeMasks';
-import Formulario from './formulario';
+import AlertError from '../errors/alertError'
 
 import logo from '../../assets/logo.png';
 import plano1 from '../../assets/transporte.jpg';
 import arrow from '../../assets/arrow.png';
+
 
 
 export default class CadastroRestaurante extends Component{
@@ -20,7 +21,7 @@ export default class CadastroRestaurante extends Component{
             celular:'',
             password:'',
             password_confirmation:'',
-            tipo_cadastro:1,
+            tipo_usuario:1,
             disabled:false,
             errors:{
                 alert:false,
@@ -42,6 +43,7 @@ export default class CadastroRestaurante extends Component{
                 case 'celular':
                 case 'password':
                 case 'password_confirmation':
+                default:
                     e.target.className = 'form-control is-invalid'
                     break;
             }
@@ -55,6 +57,7 @@ export default class CadastroRestaurante extends Component{
                 case 'email':
                 case 'password':
                 case 'password_confirmation':
+                default:
                     e.target.className = 'form-control'
                     break;
             }
@@ -67,12 +70,14 @@ export default class CadastroRestaurante extends Component{
 
         const res = await this.props.cadastrarUsuario(this.state);
         
-        if(res.status != 200){
+        if(res.status !== 201){
             this.setState({
-                errors:{...this.state.errors, alert:true, error_data:res.data.errors}
+                errors:{...this.state.errors, alert:true, error_data:Object.values(res.data.errors)}
             })
+        }else {
+            this.setState(this.stateInicial)
         }
-        this.setState({disabled: false});
+        this.setState({disabled:false});
     }
 
     render(){
@@ -112,6 +117,8 @@ export default class CadastroRestaurante extends Component{
                                     <form className='pre-cadastro' onSubmit={this.handleSubmit}>
 
                                         <h2 className='text-center'> Cadastre-se </h2>
+
+                                        <AlertError error={this.state.errors.alert}  error_data={this.state.errors.error_data[0]} />
 
                                         <div className="form-group">
                                             <label htmlFor="inputNome">Nome completo</label>

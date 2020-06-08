@@ -1,4 +1,5 @@
-.section1{
+.section1,
+.tipo-cadastro{
     width: 100%;
     height: auto;
     min-height: 720px;
@@ -6,7 +7,10 @@
     /* background-image: url('../../assets/section1bg.png'); */
     background-repeat: no-repeat;
     background-size: cover;
-  
+  }
+  .tipo-cadastro{
+    height: 100vh !important;
+    min-height: 100vh;
   }
   .nav-bar-container{
     width: 1055px;
@@ -381,4 +385,72 @@
     height: 55px;
     font-size: 24px;
     text-align: center;
+  }
+
+  /* SELECIONAR TIPO DE CADASTRO */
+
+  .tipo-cadastro-title{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: #333333;
+    font-weight: bold;
+  }
+
+  .tipo-empresa,
+  .tipo-usuario{
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .tipo-usuario{
+    background-color: #fff;
+    float:right;
+  }
+
+  .tipo-empresa-card{
+    width: 400px;
+    height: 400px;
+    background-color: #FFF5F3;
+    border-radius: 200px;
+  }
+  .tipo-empresa-card img{
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+  .tipo-empresa-card:hover{
+    cursor: pointer;
+    border:solid 4px #74D5DE
+  }
+  .with-bg{
+    background-image: linear-gradient(#FFC296, #FFD18C);
+  }
+  .position-bottom{
+    bottom: 0px;
+  }
+  .md{
+    width: 400px;
+  }
+  .radio-md{
+    width: 15px;
+    height: 15px;
+  }
+  .btn-light-blue{
+    background-color: #74D5DE;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 1px 1px 2px #777777;
+  }
+  .btn-light-blue:active{
+    background-color: rgb(86, 166, 173);
+    box-shadow: none;
   }
