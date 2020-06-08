@@ -18,6 +18,11 @@ export default class TipoCadastro extends Component {
     }
 
     render(){
+        
+        console.log(this.props.info.nome)
+        this.setState({ nome: this.props.info.nome})
+
+        console.log(this.state)
         return(
             <div className="tipo-cadastro">
                 <h1 className="tipo-cadastro-title">

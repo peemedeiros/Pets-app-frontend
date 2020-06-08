@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
-import ProgressBar from './progressBar'
 import Step0 from './home-cadastro';
-import Step1 from './confirmar-cadastro';
-import Step2 from './cadastro-sucesso';
 
 import './styles.css';
 
@@ -58,19 +55,10 @@ export default class Home extends Component{
     render(){
         return(
             <>  
-                <ProgressBar currentStep={this.state.currentStep} />
-
                 <Step0 
                     currentStep={this.state.currentStep} 
                     nextStep={this.nextStep}
                     cadastrarUsuario={this.cadastrarUsuario}/>
-                <Step1 
-                    currentStep={this.state.currentStep}
-                    nextStep={this.nextStep}
-                    inserindoDadosUsuario={this.inserindoDadosUsuario}/>
-                <Step2
-                    nextStep={this.nextStep}
-                    currentStep={this.state.currentStep}/>
             </>
         )
     }
