@@ -1,30 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import './login.css'
 
 import Formulario from "./formulario";
 
-const URL = "http://127.0.0.1:8000/api/v1/login";
-
-const config = {
-    headers:{
-        'Accept':'application/json',
-        'Content-Type':'application/json'
-    }
-}
-
 export default class login extends Component{
-
-    //realiza a requisição de login na API
-    
-    realizarLogin = async usuario => {
-        try {
-            return await axios.post(URL,usuario, config)
-        } catch (error) {
-           return error.response
-        }
-    }
     
     render(){
 
@@ -44,7 +24,7 @@ export default class login extends Component{
                     </div>
 
                     <div className="container">
-                        <Formulario realizarLogin={this.realizarLogin} />
+                        <Formulario />
                     </div>
                     
                 </div>

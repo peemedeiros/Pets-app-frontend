@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { cadastrarUsuario } from '../../services/users-service';
 
 import InputErrorMessage from './inputErrorMsg';
 import SpinnerButton from '../template/spinnerLoader';
@@ -8,7 +9,6 @@ import AlertError from '../errors/alertError'
 
 import empresa from '../../assets/empresa.png'
 import cliente from '../../assets/cliente.png'
-
 import logo from '../../assets/logo.png';
 import plano1 from '../../assets/transporte.jpg';
 import arrow from '../../assets/arrow.png';
@@ -24,7 +24,7 @@ export default class CadastroRestaurante extends Component{
             celular:'',
             password:'',
             password_confirmation:'',
-            tipo_usuario:1,
+            tipo_cadastro:1,
             disabled:false,
             errors:{
                 alert:false,
@@ -68,7 +68,7 @@ export default class CadastroRestaurante extends Component{
         }
     }
 
-    enviandoDados = e => {
+    avancarPassoCadastro = e => {
         e.preventDefault();
         this.props.nextStep(1);
     }
@@ -77,15 +77,15 @@ export default class CadastroRestaurante extends Component{
         e.preventDefault();
         this.setState({ disabled: true});
 
-        const res = await this.props.cadastrarUsuario(this.state);
+        const res = await cadastrarUsuario(this.state);
         
         if(res.status !== 201){
-            
             this.setState({
                 errors:{...this.state.errors, alert:true, error_data:Object.values(res.data.errors)}
             })
             this.props.nextStep(0)
         }else {
+            this.props.nextStep(2);
             this.setState(this.stateInicial)
         }
         this.setState({disabled:false});
@@ -123,7 +123,7 @@ export default class CadastroRestaurante extends Component{
                                 </div>
                                 <div className='col'>
                                     <div className='fomulario-cadastro'>
-                                        <form className='pre-cadastro' onSubmit={this.enviandoDados}>
+                                        <form className='pre-cadastro' onSubmit={this.avancarPassoCadastro}>
 
                                             <h2 className='text-center'> Cadastre-se </h2>
 
@@ -313,7 +313,7 @@ export default class CadastroRestaurante extends Component{
                             <img src={empresa} alt="empresa" />
                         </label>
                         <div className="row">
-                            <input type="radio" value={1} onChange={this.handleChange} name="tipo_usuario" className="mr-3" id="empresa" required/>
+                            <input type="radio" value={1} onChange={this.handleChange} name="tipo_cadastro" className="mr-3" id="empresa" required/>
                             <h3>Como empresa</h3>
                         </div>
                     </div>
@@ -322,7 +322,7 @@ export default class CadastroRestaurante extends Component{
                             <img src={cliente} alt="cliente" />
                         </label>
                         <div className="row">
-                            <input type="radio" value={0} onChange={this.handleChange} name="tipo_usuario" className="mr-3" id="usuario" required/>
+                            <input type="radio" value={0} onChange={this.handleChange} name="tipo_cadastro" className="mr-3" id="usuario" required/>
                             <h3>Como cliente</h3>
                         </div>
                     </div>

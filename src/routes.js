@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/cadastro';
 import Login from './components/login/index'
 import AppLandPage from './components/usuario/appLandPage'
-import Teste from './components/cadastro/tipo-cadastro'
+import Teste from './components/paineis/usuario-empresa'
 
 
 

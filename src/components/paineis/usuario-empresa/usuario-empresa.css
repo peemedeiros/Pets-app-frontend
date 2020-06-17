@@ -1,0 +1,111 @@
+/* SIDE MENU */
+.side-menu{
+    width: 65px;
+    height: 100vh;
+    position: absolute;
+    background-image: linear-gradient(to right, #FFE49D, #FFD18C);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.178);
+}
+
+.item-side-menu{
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.item-side-menu img{
+    width: 30px;
+    height: 30px;
+}
+.logo{
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.separador{
+    width: 80%;
+    height: 1px;
+    background-color: rgb(141, 141, 141);
+}
+
+/* TOP MENU */
+
+.top-menu{
+    width: 100%;
+    height: 65px;
+    float: left;
+    background-color: #FFD18C;
+    display: flex;
+}
+.void{
+    width: 65px;
+    height: 65px;
+}
+.top-menu-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.menu-button{
+    width: 35px;
+    height: 35px;
+    background-color: #F39034;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.288);
+}
+.menu-button img{
+    width: 65%;
+    height: 65%;
+}
+.date-time{
+    width: 300px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+/* INDEX */
+.main-body{
+    width: 100%;
+    height: auto;
+    display: flex;
+
+}
+.helper{
+    width: 70px;
+    height: 100%;
+    background-color: teal;
+}
+.empresas-body{
+    width: 100%;
+    height: auto;
+    background-color: #FFF5F3;
+}
+.title{
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    border-bottom: solid 1px #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { signIn } from '../../services/auth-service';
 import AlertError from '../errors/alertError';
 import SpinnerLoader from '../template/spinnerLoader';
-
-const TOKEN = '@PetsApp:token'
 
 export default class formularioLogin extends Component{
 
@@ -21,32 +20,24 @@ export default class formularioLogin extends Component{
         this.state = this.stateInicial
     }
 
-    //Atualiza os estatos dos inputs
     handleChange = e =>{
         const {name, value} = e.target;
         this.setState({[name]: value})
     }
 
-    //Retorna a resposta da requisição na API 
     handleSubmit = async e => {
         e.preventDefault();
         
-        //Desabilita o botão para que não haja problemas como dupla requisição.
         this.setState({ disabled: true })
-        const res = await this.props.realizarLogin(this.state)
+        const res = await signIn(this.state)
         
-        //Traz os erros
         if(res.status != 200){
             if(res.status === 422)
                 this.setState({ errors:{...this.state.errors, alert:true, error_data:Object.values(res.data.errors)} })
             else
                 this.setState({ errors:{...this.state.errors, alert:true, error_data:["Usuário não encontrado!"]} })
         }
-        
-        //Envia o token para o localStorage
-        localStorage.setItem(TOKEN,JSON.stringify(res.data))
 
-        //Reabilita o botão após o retorno da requisição
         this.setState({ disabled: false })
     }
     render(){
