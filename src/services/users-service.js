@@ -8,5 +8,3 @@ export const cadastrarUsuario = async usuario => {
         return error.response
     }
 }
-
-export const loggedUser

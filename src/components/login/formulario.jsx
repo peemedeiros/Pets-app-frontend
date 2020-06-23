@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { signIn } from '../../services/auth-service';
 import AlertError from '../errors/alertError';
 import SpinnerLoader from '../template/spinnerLoader';
@@ -15,7 +15,8 @@ export default class formularioLogin extends Component{
             errors:{
                 alert:false,
                 error_data:[]
-            }
+            },
+            logged:false
         }
         this.state = this.stateInicial
     }
@@ -36,12 +37,18 @@ export default class formularioLogin extends Component{
                 this.setState({ errors:{...this.state.errors, alert:true, error_data:Object.values(res.data.errors)} })
             else
                 this.setState({ errors:{...this.state.errors, alert:true, error_data:["Usuário não encontrado!"]} })
+        }else{
+            this.setState({logged:true})
         }
 
         this.setState({ disabled: false })
+
+        
     }
     render(){
-
+        if(this.state.logged){
+            return (<Redirect to="painel"/>)
+        }
         return(
             <div className="container">
                 <h2>Painel da Empresa</h2>

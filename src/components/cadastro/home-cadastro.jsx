@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { cadastrarUsuario } from '../../services/users-service';
 
-import InputErrorMessage from './inputErrorMsg';
+import InputErrorMessage from '../errors/inputErrorMsg';
 import SpinnerButton from '../template/spinnerLoader';
 import { telefoneMask } from '../../functions/homeMasks';
 import AlertError from '../errors/alertError'

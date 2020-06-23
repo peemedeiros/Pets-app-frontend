@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  InputErrorMessage from './inputErrorMsg';
+import  InputErrorMessage from '../errors/inputErrorMsg';
 
 export default class FormularioCadastro extends Component{
     
@@ -115,7 +115,7 @@ export default class FormularioCadastro extends Component{
 
     render(){
         
-        if(this.props.currentStep !== 2)
+        if(this.props.currentStep !== 1)
             return null
         return(
             <>
