@@ -5,6 +5,7 @@ import Home from './components/cadastro';
 import Login from './components/login/index'
 import AppLandPage from './components/usuario/appLandPage'
 import Teste from './components/paineis/usuario-empresa'
+import CadastroEmpresa from './components/cadastro-empresa/index'
 
 
 
@@ -34,8 +35,9 @@ export default function Routes() {
                 <Route path='/cadastro' exact component={Home}/>
                 <Route path='/login' exact component={Login}/>
                 <Route path='/app' exact component={AppLandPage} />
+                <PrivateRoutes path='/painel/cadastrar' exact component={CadastroEmpresa} />
                 <PrivateRoutes path='/painel' component={Teste} />
-
+                
             </Switch>
         </BrowserRouter>
     )

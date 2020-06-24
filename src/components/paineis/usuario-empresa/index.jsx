@@ -27,7 +27,7 @@ export default class Index extends Component {
                         <div className="empresas-body p-2">
                             <div className="title">
                                 NOME DO USUARIO
-                                <Link className="btn btn-info" to="/app">Cadastra nova empresa</Link>
+                                <Link className="btn btn-info" to="/painel/cadastrar">Cadastra nova empresa</Link>
                             </div>
                             
                         </div>

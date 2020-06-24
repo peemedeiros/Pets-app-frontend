@@ -107,6 +107,7 @@
     background-color:#FE8F6C;
     font-weight: 900;
     color: #ffffff;
+    align-items: center;
   }
   .cadastroFinalizado .btn{
     margin-top: 30px;
@@ -284,14 +285,7 @@
     width: 180px;
     height: 40px;
   }
-  .progress{
-    height: 8px;
-    margin-bottom: 50px;
-  }
-  .barra-width{
-    width: 30%;
-    background-color: #FF6E41;
-  }
+  
   /* FORMULARIO DE CADASTRO */
   .cadastroEmpresa{
     width: 550px;

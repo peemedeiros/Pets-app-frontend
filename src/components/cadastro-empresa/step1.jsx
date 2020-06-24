@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import  InputErrorMessage from '../errors/inputErrorMsg';
+import { cnpjMask, telefoneMask, cepMask } from '../../functions/homeMasks';
 
 export default class FormularioCadastro extends Component{
     
     constructor(){
         super()
         this.state = {
+
             razao_social:'',
             nome_empresa:'',
             cnpj:'',
@@ -19,32 +21,12 @@ export default class FormularioCadastro extends Component{
             uf:'',
             transporte:''
         }
+
         this.validade = this.validade.bind(this);
+        this.findCep = this.findCep.bind(this);
     }
 
-    findCep = cep =>{
-        
-        try{
-             fetch(`https://viacep.com.br/ws/${cep}/json`, {
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(res => (res.json()))
-            .then(res => {
-                this.setState({
-                    logradouro:res.logradouro,
-                    bairro:res.bairro,
-                    cidade:res.localidade,
-                    uf:res.uf
-                })
-            })
-        }catch(error){
-            console.log('oi')
-        }
-        
-    }
+    
 
     handleChange = e =>{
         const {name, value} = e.target;
@@ -113,9 +95,33 @@ export default class FormularioCadastro extends Component{
         }
     }
 
+   findCep = cep =>{
+
+        const headers = 
+        fetch(`https://viacep.com.br/ws/${cep}/json`, {
+            headers:{
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => (res.json()))
+        .then(res => {
+            this.setState({
+                logradouro:res.logradouro,
+                bairro:res.bairro,
+                cidade:res.localidade,
+                uf:res.uf
+            })
+        })
+    
+        
+    }
+
+    
+
     render(){
         
-        if(this.props.currentStep !== 1)
+        if(this.props.step !== 1)
             return null
         return(
             <>
@@ -146,7 +152,14 @@ export default class FormularioCadastro extends Component{
                         
                     <div className="form-group">
                         <label htmlFor="inputCep">CEP</label>
-                        <input type="text"  name="cep" onBlur={() => this.findCep(this.state.cep)} onChange={this.validade} value={this.state.cep} className="form-control cep" id="inputCep" placeholder="CEP da empresa"/>
+                        <input 
+                        type="text"  
+                        name="cep" 
+                        onBlur={() => this.findCep(this.state.cep)} 
+                        onChange={this.validade} value={this.state.cep} 
+                        className="form-control cep" id="inputCep" 
+                        placeholder="CEP da empresa"/>
+                        
                         <InputErrorMessage field={this.state.cep}/>
                     </div>
     

@@ -1,0 +1,10 @@
+
+.progress{
+    height: 8px;
+    margin-bottom: 50px;
+}
+.barra-width{
+    width: 30%;
+    background-image: linear-gradient(#FFC296, #FFD18C);
+    transition: 1s;
+}
