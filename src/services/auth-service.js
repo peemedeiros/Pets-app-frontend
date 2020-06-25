@@ -1,4 +1,4 @@
-import api from './api';
+import api, { privateReq } from './api';
 const RESOURCE = "login";
 const TOKEN_KEY = '@PetsApp:token';
 
@@ -16,8 +16,9 @@ export const signIn = async usuario => {
 
             usuario = retorno.data;
             localStorage.setItem(TOKEN_KEY, JSON.stringify(usuario))
+            
+            privateReq.defaults.headers.common['Authorization'] = 'Bearer ' + retorno.data.token
 
-            console.log(localStorage.getItem(TOKEN_KEY))
         }
         
         return retorno

@@ -36,6 +36,7 @@ export default class CadastroRestaurante extends Component{
     }
 
     handleChange = e =>{
+        
         const {name, value} = e.target;
         this.setState({[name]: value})
         console.log(name + " " +value)
