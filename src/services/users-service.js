@@ -1,9 +1,9 @@
-import api from './api'
+import { publicReq } from './api'
 const RESOURCE = 'users'
 
 export const cadastrarUsuario = async usuario => {
     try{
-        return await api.post(RESOURCE, usuario);
+        return await publicReq.post(RESOURCE, usuario);
     } catch (error) {
         return error.response
     }

@@ -4,9 +4,12 @@ import { getToken } from '../../services/auth-service';
 
 import Step1 from './step1';
 import Step2 from './step2';
+import Step3 from './step3';
 import ProgressBar from './progressBar';
 
 import './cadastro-empresa.css'
+import '../cadastro/styles.css'
+
 import { Redirect } from 'react-router-dom';
 import { cnpjMask, telefoneMask, cepMask } from '../../functions/homeMasks';
 import { cadastrarEmpresa } from '../../services/empresas-services';
@@ -29,13 +32,13 @@ export default class Home extends Component {
             cidade:'',
             uf:'',
             images:[],
+            categorias:[],
             step:1,
             disabled:false,
             errors:{
                 alert:false,
                 error_data:[]
             }
-
         }
 
         this.nextStep = this.nextStep.bind(this);
@@ -50,6 +53,8 @@ export default class Home extends Component {
 
     handleChange = e =>{
         const {name, value} = e.target;
+        console.log(name + " " + value);
+
         switch(name){
             case 'cnpj':
                 this.setState({[name]:cnpjMask(value)})
@@ -86,18 +91,17 @@ export default class Home extends Component {
     }
 
     fileHandler = e =>{
-        
         this.setState({ images:e.target.files });
     }
 
     handleSubmit = async e => {
         e.preventDefault();
         this.setState({ disabled: true });
+        console.log(this.state)
 
         const res = await cadastrarEmpresa(this.state);
 
         if(res.status !== 201) console.log('error')
-
     }
 
     render(){
@@ -106,8 +110,6 @@ export default class Home extends Component {
             return(
                 <>
                     <ProgressBar nextStep={this.nextStep} step={this.state.step}/>
-                
-
                         <Step1
                             findCep={this.findCep}
                             handleChange={this.handleChange} 
@@ -129,12 +131,16 @@ export default class Home extends Component {
                         <Step2 
                             step={this.state.step}
                             images={this.state.images}
-                            handleChange={this.state.handleChange}
-                            handleSubmit={this.handleSubmit}
                             fileHandler={this.fileHandler}
-                            disabled={this.state.disabled}
+                            nextStep={this.nextStep}
                         />
 
+                        <Step3
+                            step={this.state.step}
+                            categorias={this.state.categorias}
+                            handleSubmit={this.handleSubmit}
+                            empresa={this.state}
+                        />
                 </>
             )
         }else{

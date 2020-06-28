@@ -9,10 +9,19 @@ export default class progressBar extends Component{
         let progress = "0%"
         let finishColor = "#FF6E41"
     
-        if(this.props.step === 1)
-            progress = "30%"
-        else if( this.props.step === 2){
-            progress = "80%"
+        switch(this.props.step){
+            case 1:
+                progress = "30%"
+                break
+            case 2:
+                progress = "60%"
+                break
+            case 3:
+                progress = "80%"
+                break
+            default:
+                progress = "100%"
+                finishColor = "#9CD07B"
         }
 
         return(

@@ -32,7 +32,7 @@ export default class formularioLogin extends Component{
         this.setState({ disabled: true })
         const res = await signIn(this.state)
         
-        if(res.status != 200){
+        if(res.status !== 200){
             if(res.status === 422)
                 this.setState({ errors:{...this.state.errors, alert:true, error_data:Object.values(res.data.errors)} })
             else

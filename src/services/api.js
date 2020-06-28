@@ -1,18 +1,21 @@
 import axios from 'axios';
-import { getToken } from './auth-service';
 
-const api = axios.create({
-    baseURL:'http://127.0.0.1:8000/api/v1/',
-    headers:{
-        'Accept':'application/json',
-        'Content-Type':'application/json'
-    }
-})
+const URL = "http://127.0.0.1:8000/api/v1/";
+
+const CONFIG = {
+    baseURL:URL,
+    'Accept':'application/json',
+    'Content-Type':'application/json'
+}
+
+export const publicReq = axios.create(CONFIG)
 
 
 export const privateReq = axios.create({
-    baseURL:'http://127.0.0.1:8000/api/v1/',
+    baseURL:URL
 })
 
 
-export default api
+
+
+

@@ -31,6 +31,7 @@ export default class FormularioCadastro extends Component{
                 case 'bairro':
                 case 'logradouro':
                 case 'numero':
+                default:
                     e.target.className = 'form-control cnpj is-invalid'
                     break;
             }
@@ -51,6 +52,7 @@ export default class FormularioCadastro extends Component{
                 case 'bairro':
                 case 'logradouro':
                 case 'numero':
+                default:
                     e.target.className = 'form-control cnpj'
                     break;
 
@@ -60,8 +62,7 @@ export default class FormularioCadastro extends Component{
 
     render(){
         
-        if(this.props.step !== 1)
-            return null
+        if(this.props.step !== 1) return null
 
         return(
             <>

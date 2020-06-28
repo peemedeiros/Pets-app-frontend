@@ -19,13 +19,13 @@ export default function usuario(){
                 <div className="col-2 ml-5">
                     <div className="logo-box pt-1">
                         <Link className="nav-link logo-box" to="/cadastro">
-                            <img src={logoApp} alt="logo"/>
+                            <img src={logoApp} alt="logo-md"/>
                         </Link>
                     </div>
                 </div>
 
                 <div className="col-3 mt-4 pt-1 ">
-                    <img src={tituloApp} alt="titulo petsApp"/>
+                    <img src={tituloApp} alt="titulo-petsApp"/>
                 </div>
 
                 <div className="col-6 text_titulo">
@@ -41,7 +41,7 @@ export default function usuario(){
             <div className="row">
                 <div className="col-4 mt-5">
                     <div className="foto-app">
-                        <img src={fotoApp}/>
+                        <img src={fotoApp} alt="foto-app"/>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@ export default function usuario(){
                 <div className="col-4 pl-5">
                     <div className="box-qrcode">
                         Baixe nosso APP
-                        <img src={fotoQrcode}/>
+                        <img src={fotoQrcode} alt="qrcode"/>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@ export default function usuario(){
 
             <div className="row pl-4">
                 <div className="col-8 box-icon">
-                    <img src={petsIcon}/>
+                    <img src={petsIcon} alt="petsIcon"/>
                 </div>
 
             </div>
@@ -92,11 +92,11 @@ export default function usuario(){
         <div className="sessao4 mt-5">
             <div className="row">
                 <div className="col-4 ml-5 tela-app">
-                    <img src={fotoApp2}/>
+                    <img src={fotoApp2} alt="fotoapp2"/>
                 </div>
 
                 <div className="col-4  tela-app">
-                    <img src={fotoApp3}/>
+                    <img src={fotoApp3} alt="fotoapp3" />
                 </div>
 
             </div>

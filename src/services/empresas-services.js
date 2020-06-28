@@ -3,8 +3,9 @@ const RESOURCE = "empresas"
 
 
 export const cadastrarEmpresa = async empresa =>{
-    const data = new FormData();
 
+    let data = new FormData();
+    
     data.append('razao_social', empresa.razao_social)
     data.append('nome_fantasia', empresa.nome_fantasia)
     data.append('cnpj', empresa.cnpj)
@@ -16,23 +17,11 @@ export const cadastrarEmpresa = async empresa =>{
     data.append('complemento', empresa.complemento)
     data.append('bairro', empresa.bairro)
     data.append('uf', empresa.uf)
-    
-    let imagensteste =[];
-    
-    for(let i = 0; i < empresa.images.lenght ; i++){
-        imagensteste.push(empresa.images[i]);
-    }
-    
-    data.append('images', imagensteste)   
-
-    // empresa.images = data;
-
-    console.log(empresa)
-    console.log(empresa.images)
-
+    data.append('images', empresa.images[0])
+    data.append('categorias', empresa.categorias)
 
     try{
-
+        
         const retorno = await privateReq.post(RESOURCE,data)
 
         console.log(retorno)

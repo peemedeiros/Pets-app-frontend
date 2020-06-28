@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link, Redirect } from 'react-router-dom'
-import { getToken, signOut } from '../../../services/auth-service'
+import { getToken } from '../../../services/auth-service'
 
 import SideMenu from './side-menu'
 
@@ -8,19 +8,11 @@ import './usuario-empresa.css'
 
 export default class Index extends Component {
     
-    constructor(){
-        super()
-        this.state = {
-            logged:false
-        }
-    }
-
     render(){
-
-        if(getToken){
+        if(getToken()){
             return(
                 <>
-                    <SideMenu logged={this.state.logged}/>
+                    <SideMenu />
                     <div className="main-body">
                         <div className="helper"></div>
                         

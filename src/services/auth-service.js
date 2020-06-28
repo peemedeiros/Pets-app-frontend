@@ -1,10 +1,11 @@
-import api, { privateReq } from './api';
+import { publicReq, privateReq } from './api';
+
 const RESOURCE = "login";
 const TOKEN_KEY = '@PetsApp:token';
 
 export const signIn = async usuario => {
     try{
-        const retorno =  await api.post(RESOURCE, usuario)
+        const retorno =  await publicReq.post(RESOURCE, usuario)
 
         console.log(retorno.data.user.tipo_cadastro)
 
@@ -28,8 +29,10 @@ export const signIn = async usuario => {
     }
 }
 
-export const getToken = () => {
+export const getToken = () =>{
     const data = JSON.parse(localStorage.getItem(TOKEN_KEY))
+    if(!data.token) return false
+    
     return data.token
 }
 

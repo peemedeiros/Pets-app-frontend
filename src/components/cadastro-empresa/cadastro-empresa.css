@@ -1,4 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
 
+}
 .progress{
     height: 8px;
     margin-bottom: 50px;
@@ -7,4 +11,67 @@
     width: 30%;
     background-image: linear-gradient(#FFC296, #FFD18C);
     transition: 1s;
+}
+
+/* STEP 3 */
+#step3{
+    width: 100%;
+    height: 100vh;
+}
+.text-grey{
+    color: #333333;
+}
+
+.categorias-content{
+    width: 100% !important;
+    height: 530px !important;
+}
+
+.categorias-labels{
+    width: 375px;
+    height: 100%;
+}
+.categoria:hover{
+    cursor: pointer;
+    border: 5px solid #62C0CA;
+}
+.categoria{
+    width: 284px !important;
+    height: 284px !important;
+    border-radius: 142px;
+    background-color: #333333;
+}
+.shadow{
+    box-shadow: 3px 3px 5px #46464665 !important;
+}
+
+.bg-card-orange{
+    background-image: linear-gradient(to bottom, #FFE49D, #FFD18C);
+    color: #333333 !important;
+    font-weight: bold;
+}
+.petshop,.vet,.hotel{
+    background-image: url('../../assets/pet-shop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.vet{
+    background-image: url('../../assets/vet.png') !important;
+}
+.hotel{
+    background-image: url('../../assets/architecture-and-city.png') !important;
+}
+.botao-cadastrar{
+    height: 100px !important;
+}
+.botao-laranja{
+    width: 300px !important;
+    height: 40px !important;
+    color: #ffffff !important;
+    font-weight: bold;
+    background-color: #FE8F6C !important;
+}
+.ativado{
+    border: 5px solid #62C0CA !important;
 }
