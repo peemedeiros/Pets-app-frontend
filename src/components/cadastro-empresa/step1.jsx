@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  InputErrorMessage from '../errors/inputErrorMsg';
+import InputErrorMessage from '../errors/inputErrorMsg';
 
 export default class FormularioCadastro extends Component{
     
@@ -67,29 +67,27 @@ export default class FormularioCadastro extends Component{
         return(
             <>
                 <form className='cadastroEmpresa center'>
-
-
                     <div className="form-group">
                         <label htmlFor="inputCnpj">CNPJ</label>
-                        <input type="text"  name="cnpj"  onChange={this.validade} onBlur={this.validade} value={this.props.cnpj} className="form-control cnpj" id="inputCnpj" placeholder="Qual é o CNPJ da empresa?"/>
+                        <input  type="text"  name="cnpj"  onChange={this.validade} onBlur={this.validade} value={this.props.cnpj} className="form-control cnpj" id="inputCnpj" placeholder="Qual é o CNPJ da empresa?"/>
                         <InputErrorMessage field={this.props.cnpj}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputRazaoSocial">Razão social</label>
-                        <input type="text"  name="razao_social"  onChange={this.validade} onBlur={this.validade} className="form-control" id="inputRazaoSocial" value={this.props.razao_social} placeholder="Razão social da empresa"/>
+                        <input  type="text"  name="razao_social"  onChange={this.validade} onBlur={this.validade} className="form-control" id="inputRazaoSocial" value={this.props.razao_social} placeholder="Razão social da empresa"/>
                         <InputErrorMessage field={this.props.razao_social}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputNomeEmpresa">Nome da empresa</label>
-                        <input type="text"  name="nome_fantasia"  onChange={this.validade} onBlur={this.validade} className="form-control" id="inputNomeEmpresa" value={this.props.nome_fantasia} placeholder="Nome da empresa"/>
+                        <input  type="text"  name="nome_fantasia"  onChange={this.validade} onBlur={this.validade} className="form-control" id="inputNomeEmpresa" value={this.props.nome_fantasia} placeholder="Nome da empresa"/>
                         <InputErrorMessage field={this.props.nome_fantasia}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputTelefoneEmpresa">Telefone</label>
-                        <input type="text"  name="telefone_empresa"  onChange={this.validade} onBlur={this.validade} className="form-control" value={this.props.telefone_empresa} id="inputTelefoneEmpresa" placeholder="Qual o telefone da sua empresa?"/>
+                        <input  type="text"  name="telefone_empresa"  onChange={this.validade} onBlur={this.validade} className="form-control" value={this.props.telefone_empresa} id="inputTelefoneEmpresa" placeholder="Qual o telefone da sua empresa?"/>
                         <InputErrorMessage field={this.props.telefone_empresa}/>
                     </div>
                         
@@ -102,6 +100,7 @@ export default class FormularioCadastro extends Component{
                             onChange={this.validade} value={this.props.cep} 
                             className="form-control cep" id="inputCep" 
                             placeholder="CEP da empresa"
+                            
                         />
                         
                         <InputErrorMessage field={this.props.cep}/>
@@ -110,35 +109,47 @@ export default class FormularioCadastro extends Component{
                     <div className="form-row">
                         <div className="form-group col-md-8">
                             <label htmlFor="inputCidade">Cidade</label>
-                            <input type="text"  name="cidade" onChange={this.props.handleChange} className="form-control" value={this.props.cidade} id="inputCidade" readOnly placeholder="Cidade da empresa"/>
+                            <input  type="text"  name="cidade" onChange={this.props.handleChange} className="form-control" value={this.props.cidade} id="inputCidade" readOnly placeholder="Cidade da empresa"/>
                         </div>
                             <div className="form-group col-md-4">
                             <label htmlFor="inputEstado">Estado</label>
-                            <input type="text"  name="estado" onChange={this.props.handleChange} className="form-control" value={this.props.uf} id="inputEstado" readOnly placeholder="UF da empresa"/>
+                            <input  type="text"  name="estado" onChange={this.props.handleChange} className="form-control" value={this.props.uf} id="inputEstado" readOnly placeholder="UF da empresa"/>
                         </div>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputBairro">Bairro</label>
-                        <input type="text"  name="bairro"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj" value={this.props.bairro} id="inputBairro" placeholder="Bairro da empresa"/>
+                        <input  type="text"  name="bairro"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj" value={this.props.bairro} id="inputBairro" placeholder="Bairro da empresa"/>
                         <InputErrorMessage field={this.props.bairro}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputLogradouro">Logradouro</label>
-                        <input type="text"  name="logradouro"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj" value={this.props.logradouro} id="inputLogradouro" placeholder="Logradouro da empresa"/>
+                        <input  type="text"  name="logradouro"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj" value={this.props.logradouro} id="inputLogradouro" placeholder="Logradouro da empresa"/>
                         <InputErrorMessage field={this.props.logradouro}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputNumero">Numero</label>
-                        <input type="text"  name="numero"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj"  id="inputNumero" placeholder="Número do endereço"/>
+                        <input  type="text"  name="numero"  onChange={this.validade} onBlur={this.validade} className="form-control cnpj"  id="inputNumero" placeholder="Número do endereço"/>
                         <InputErrorMessage field={this.props.numero}/>
                     </div>
     
                     <div className="form-group">
                         <label htmlFor="inputComplemento">Complemento</label>
-                        <input type="text"  name="complemento" onChange={this.handleChange} className="form-control" id="inputComplemento" placeholder="Complemento do endereço"/>
+                        <input  type="text"  name="complemento" onChange={this.handleChange} className="form-control" id="inputComplemento" placeholder="Complemento do endereço"/>
+                    </div>
+
+                    <div className="form-group margin-mini-bot">
+                        <label htmlFor="inputComplemento">Sua empresa possui seviço de transporte?</label><br/>
+                        <div className="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="inputSim" onChange={ this.props.handleChange } name="transporte" value="1" className="custom-control-input" />
+                            <label  className="custom-control-label" htmlFor="inputSim">Sim</label>
+                        </div>
+                        <div className="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="inputNao" onChange={ this.props.handleChange } name="transporte" value="0" className="custom-control-input" />
+                            <label  className="custom-control-label" htmlFor="inputNao">Não</label>
+                        </div>
                     </div>
 
                     <div className="form-group flex-center">

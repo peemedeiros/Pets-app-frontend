@@ -22,6 +22,7 @@ export default class progressBar extends Component{
             default:
                 progress = "100%"
                 finishColor = "#9CD07B"
+                break
         }
 
         return(

@@ -152,3 +152,112 @@
     justify-content: space-between;
     align-items: center;
 }
+
+/* CARD EMPRESA */
+
+.card-empresa{
+    width: 450px;
+    height: 280px;
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    border:solid 1px #ccc;
+    padding: 5px;
+    box-shadow: 3px 3px 5px rgba(107, 107, 107, 0.452);
+}
+.linha{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.logo-empresa{
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    border:solid 1px #ccc;
+    box-shadow: 3px 3px 5px rgba(107, 107, 107, 0.452);
+    
+}
+.nome-empresa{
+    width: 350px;
+    height: 80px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    margin-bottom: 10px;
+}
+.txt-underline{
+    text-decoration: underline !important;
+}
+.linha-info{
+    width: 100%;
+    height: 170px;
+    display: flex;
+}
+.categorias{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.rate{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+}
+.rate-icon{
+    width: 23px;
+    height: 23px;
+    background-image:url('../../../assets/animal.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right:0px;
+    margin-left:0px;
+}
+.rate p{
+    margin: 0px;
+    padding: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+}
+.empresa{
+    width: 100%;
+    height: 100%;
+    background:#e6e6e6;
+    border-radius: 5px;
+    border:solid 1px #aaaaaa;
+}
+.linha-empresa{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    margin-bottom: 12px !important;
+}
+.coluna-empresa,
+.coluna-empresa-right{
+    width: 50%;
+    height: 100%;
+    padding: 5px;
+}
+
+.coluna-empresa-right{
+    display: flex;
+    justify-content: flex-end;
+}
+.closed{
+    width: 130px !important;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 5px;    
+}

@@ -7,13 +7,14 @@ import Settings from '../../../assets/settings.png';
 import Home from '../../../assets/web.png';
 import Menu from '../../../assets/open-menu.png'
 import Leave from '../../../assets/turn-off.png'
+import {Link} from 'react-router-dom'
 
 export default class SideMenu extends Component {
 
     constructor(){
         super()
         this.state = {
-            menu:false
+            menu:false,
         }
         
         this.menuHandler = this.menuHandler.bind(this)
@@ -49,13 +50,17 @@ export default class SideMenu extends Component {
 
                     <div className={` item-side-menu ${display}`}>
                         <img src={User} alt="user-logo"/>
-                        <h5 className={`${menu}`}> Nome do usuario </h5>
+                        <h5 className={`${menu}`}> { this.props.nomeUsuario } </h5>
                     </div>
                     <div className="separador"></div>
 
                     <div className={`item-side-menu ${display}`}>
                         <img src={Home} alt="home-icon"/>
-                        <h5 className={`${menu}`}> Home </h5>
+                        <h5 className={`${menu}`}>
+                            <Link to="painel">
+                                Home
+                            </Link>
+                        </h5>
                     </div>
                     <div className={`item-side-menu ${display}`}>
                         <img src={Settings} alt="setting-icon"/>

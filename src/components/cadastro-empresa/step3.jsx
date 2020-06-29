@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SpinnerLoader from '../template/spinnerLoader'
 
 export default props => {
     if(props.step !== 3) return null
@@ -124,8 +125,9 @@ export default props => {
                             </div>
                         </div>
                         <div className="row pt-3 botao-cadastrar">
-                            <button type="submit" className="btn btn-light botao-laranja center">
+                            <button type="submit" className="btn btn-light botao-laranja center" disabled={props.disabled}>
                                 CADASTRAR
+                                <SpinnerLoader status={ props.disabled }/>
                             </button>
                         </div>
                     </form>

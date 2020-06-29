@@ -7,8 +7,6 @@ export const signIn = async usuario => {
     try{
         const retorno =  await publicReq.post(RESOURCE, usuario)
 
-        console.log(retorno.data.user.tipo_cadastro)
-
         if(retorno.status === 200){
             
             if(retorno.data.user.tipo_cadastro === 0){
@@ -19,7 +17,6 @@ export const signIn = async usuario => {
             localStorage.setItem(TOKEN_KEY, JSON.stringify(usuario))
             
             privateReq.defaults.headers.common['Authorization'] = 'Bearer ' + retorno.data.token
-
         }
         
         return retorno
@@ -29,12 +26,12 @@ export const signIn = async usuario => {
     }
 }
 
-export const getToken = () =>{
-    const data = JSON.parse(localStorage.getItem(TOKEN_KEY))
-    if(!data.token) return false
+// export const getToken = () =>{
+//     const data = JSON.parse(localStorage.getItem(TOKEN_KEY))
+//     if(!data.token) return false
     
-    return data.token
-}
+//     return data.token
+// }
 
 export const isLogged = () => {
     const usuario = localStorage.getItem(TOKEN_KEY);

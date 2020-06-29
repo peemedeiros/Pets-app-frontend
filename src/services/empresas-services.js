@@ -1,4 +1,5 @@
 import { privateReq } from './api'
+import { date } from 'yup';
 const RESOURCE = "empresas"
 
 
@@ -19,6 +20,7 @@ export const cadastrarEmpresa = async empresa =>{
     data.append('uf', empresa.uf)
     data.append('images', empresa.images[0])
     data.append('categorias', empresa.categorias)
+    data.append('transporte', empresa.transporte)
 
     try{
         

@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { signIn } from '../../services/auth-service';
 import AlertError from '../errors/alertError';
 import SpinnerLoader from '../template/spinnerLoader';
+import { getToken } from '../../services/api'
 
 export default class formularioLogin extends Component{
 
@@ -46,7 +47,7 @@ export default class formularioLogin extends Component{
         
     }
     render(){
-        if(this.state.logged){
+        if(getToken()){
             return (<Redirect to="painel"/>)
         }
         return(
