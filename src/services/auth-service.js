@@ -15,8 +15,7 @@ export const signIn = async usuario => {
 
             usuario = retorno.data;
             localStorage.setItem(TOKEN_KEY, JSON.stringify(usuario))
-            
-            privateReq.defaults.headers.common['Authorization'] = 'Bearer ' + retorno.data.token
+        
         }
         
         return retorno
@@ -25,13 +24,6 @@ export const signIn = async usuario => {
         return error.response
     }
 }
-
-// export const getToken = () =>{
-//     const data = JSON.parse(localStorage.getItem(TOKEN_KEY))
-//     if(!data.token) return false
-    
-//     return data.token
-// }
 
 export const isLogged = () => {
     const usuario = localStorage.getItem(TOKEN_KEY);

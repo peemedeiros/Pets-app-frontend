@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import { getToken } from '../../../services/api'
 import CardEmpresa from './card-empresa';
+import { listar } from '../../../services/empresas-services';
 
 import SideMenu from './side-menu'
 import './usuario-empresa.css'
@@ -14,11 +15,24 @@ export default class Index extends Component {
         const dados = JSON.parse(localStorage.getItem(TOKEN_KEY))
         super()
         this.state={
-            nome:dados.user.nome
+            nome:dados.user.nome,
+            empresas:[]
+        }
+    }
+
+    async componentDidUpdate(){
+        try{
+            const retorno = await listar();
+            this.setState({ empresas:[...this.state.empresas, retorno.data]})
+        }catch(erro){
+            console.log(erro)
         }
     }
     
     render(){
+
+        console.log(this.state.empresas)
+
         if(getToken()){
             return(
                 <>

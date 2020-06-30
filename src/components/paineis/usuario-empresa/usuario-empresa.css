@@ -261,3 +261,13 @@
     color: #fff;
     border-radius: 5px;    
 }
+.coluna-empresa h5{
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 2px;
+}
+.coluna-empresa p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}

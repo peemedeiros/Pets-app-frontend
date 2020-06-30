@@ -37,3 +37,13 @@ export const cadastrarEmpresa = async empresa =>{
         return await error.response
     }
 }
+
+export const listar = async () =>{
+    try{
+        const retorno = await privateReq.get(RESOURCE)
+        
+        return retorno
+    } catch (error) {
+        return error.response
+    }
+}
