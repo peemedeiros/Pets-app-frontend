@@ -20,40 +20,35 @@ export default class Index extends Component {
         }
     }
 
-    async componentDidUpdate(){
+    async componentDidMount(){
         try{
             const retorno = await listar();
-            this.setState({ empresas:[...this.state.empresas, retorno.data]})
+            this.setState({ empresas:retorno.data.data})
         }catch(erro){
             console.log(erro)
         }
     }
     
     render(){
-
-        console.log(this.state.empresas)
-
-        if(getToken()){
-            return(
-                <>
-                    <SideMenu nomeUsuario={this.state.nome}/>
-                    <div className="main-body">
-                        <div className="helper"></div>
-                        
-                        <div className="empresas-body p-4">
-                            <div className="title">
-                                <h3>{this.state.nome}</h3>
-                                <Link className="btn btn-info" to="/painel/cadastrar">Cadastra nova empresa</Link>
-                            </div>
-                            <CardEmpresa />
+        return(
+            <>
+                <SideMenu nomeUsuario={this.state.nome}/>
+                <div className="main-body">
+                    <div className="helper"></div>
+                    
+                    <div className="empresas-body p-4">
+                        <div className="title">
+                            <h3>{this.state.nome}</h3>
+                            <Link className="btn btn-info" to="/painel/cadastrar">Cadastra nova empresa</Link>
                         </div>
+
+                        {this.state.empresas.map( empresa => {
+                            return <CardEmpresa empresa={empresa}/>
+                        })}
                     </div>
-                </>
-            )
-        }else{
-           return(
-                <Redirect to="/login"/>
-            ) 
-        }
+                </div>
+            </>
+        )
+        
     }
 }

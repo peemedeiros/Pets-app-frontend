@@ -1,5 +1,4 @@
 import { privateReq } from './api'
-import { date } from 'yup';
 const RESOURCE = "empresas"
 
 
@@ -41,7 +40,16 @@ export const cadastrarEmpresa = async empresa =>{
 export const listar = async () =>{
     try{
         const retorno = await privateReq.get(RESOURCE)
-        
+        console.log(retorno)
+        return retorno
+    } catch (error) {
+        return error.response
+    }
+}
+
+export const sigleEmpresa = async (id) =>{
+    try{
+        const retorno = await privateReq.get(`${RESOURCE}/${id}`)
         return retorno
     } catch (error) {
         return error.response

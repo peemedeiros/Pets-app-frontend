@@ -8,6 +8,7 @@ import AppLandPage from './components/usuario/appLandPage'
 import Teste from './components/paineis/usuario-empresa'
 import CadastroEmpresa from './components/cadastro-empresa/index'
 import Step3 from './components/cadastro-empresa/step3';
+import Painel2 from './components/paineis/empresas/index'
 
 const PrivateRoutes = ({ component: Component, ...rest}) => {
     return (
@@ -35,6 +36,7 @@ export default function Routes() {
                 <Route path='/teste' exact component={Step3} />
                 <PrivateRoutes path='/painel/cadastrar' exact component={CadastroEmpresa} />
                 <PrivateRoutes path='/painel' component={Teste} />
+                <PrivateRoutes path='/empresa/:id' exact component={Painel2} />
                 
             </Switch>
         </BrowserRouter>

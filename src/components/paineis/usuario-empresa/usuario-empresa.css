@@ -10,7 +10,10 @@
     box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.178);
     transition: 500ms;
 }
-
+.sair-empresa{
+    width: 70px;
+    height: 30px;
+}
 .item-side-menu{
     width: 40px;
     height: 40px;
@@ -140,8 +143,12 @@
 }
 .empresas-body{
     width: 100%;
-    height: auto;
+    height: 90vh !important;
     background-color: #FFF5F3;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-y:auto;
 }
 .title{
     width: 100%;
@@ -270,4 +277,9 @@
     margin: 0px;
     padding: 0px;
     font-size: 14px;
+}
+.logo-empresa img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }

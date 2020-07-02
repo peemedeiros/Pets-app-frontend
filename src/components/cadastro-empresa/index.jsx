@@ -58,9 +58,7 @@ export default class Home extends Component {
     }
 
     handleChange = e =>{
-        
         const {name, value} = e.target;
-        console.log(name + " " + value);
 
         switch(name){
             case 'cnpj':
