@@ -1,4 +1,4 @@
-import { publicReq, privateReq } from './api';
+import { publicReq } from './api';
 
 const RESOURCE = "login";
 const TOKEN_KEY = '@PetsApp:token';

@@ -9,6 +9,7 @@
     align-items: center;
     box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.178);
     transition: 500ms;
+    z-index: 99;
 }
 .sair-empresa{
     width: 70px;

@@ -1,0 +1,35 @@
+.servicos-body{
+    width: 100%;
+    height: 100%;
+   
+}
+
+.title{
+    box-sizing: border-box;
+}
+
+.no-margin{
+    margin: 0px !important;
+}
+
+.formulario-servicos{
+    width: 400px;
+    height: 500px;
+    border: solid 1px rgb(207, 207, 207);
+    border-radius: 8px;
+    box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.322);
+    z-index: -5;
+    box-sizing: border-box;
+    padding: 15px;
+}
+.input-pequeno{
+    width: 150px !important;
+
+}
+.orange-button{
+    background-color: #FE8F6C !important;
+    color:#FFF !important;
+}
+.orange-button:active{
+    background-color: #cc5b36 !important;
+}

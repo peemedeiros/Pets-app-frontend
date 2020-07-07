@@ -1,5 +1,6 @@
 import { privateReq } from './api'
 const RESOURCE = "empresas"
+const SERVICOS = "subcategorias"
 
 
 export const cadastrarEmpresa = async empresa =>{
@@ -47,10 +48,21 @@ export const listar = async () =>{
     }
 }
 
+export const listarTiposServico = async () => {
+    try{
+        const retorno = await privateReq.get(SERVICOS)
+        console.log(retorno.data.data)
+        return retorno.data.data
+    } catch (error) {
+        return error.response
+    }
+}
+
 export const sigleEmpresa = async (id) =>{
     try{
         const retorno = await privateReq.get(`${RESOURCE}/${id}`)
-        return retorno
+        console.log(retorno.data.data);
+        return retorno.data.data
     } catch (error) {
         return error.response
     }

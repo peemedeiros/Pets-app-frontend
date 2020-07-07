@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import { signOut } from '../../../services/auth-service'
 
 import Logo from '../../../assets/petsAppLogo2.png';
 import Settings from '../../../assets/settings.png';
 import Home from '../../../assets/web.png';
 import Menu from '../../../assets/open-menu.png';
-import Leave from '../../../assets/turn-off.png';
-import house from '../../../assets/house2.png';
 import Box from '../../../assets/commerce.png';
 import Services from '../../../assets/business.png';
 import { Link } from 'react-router-dom';
@@ -17,8 +14,7 @@ export default class SideMenu extends Component {
         super()
         this.state = {
             menu:false,
-        }
-        
+        }        
         this.menuHandler = this.menuHandler.bind(this)
     }
 
@@ -39,15 +35,7 @@ export default class SideMenu extends Component {
             margin = "margin-right"
             menu = "show-text"
         }
-
-        let imgURL = '';
-
-        if(!this.props.logo){
-            imgURL = house
-        }else{
-            imgURL = "http://127.0.0.1:8000/storage/"+this.props.logo
-        }
-
+    
         return(
             <>
                 <div className={`side-menu ${display}`}>
@@ -59,28 +47,24 @@ export default class SideMenu extends Component {
                     <div className="separador"></div>
 
                     <div className={` item-side-menu ${display}`}>
-                        <img src={imgURL} alt="user-logo"/>
+                        <img src={this.props.logo} alt="user-logo"/>
                         <h5 className={`${menu}`}> { this.props.nome_fantasia } </h5>
                     </div>
                     <div className="separador"></div>
 
-                    <div className={`item-side-menu ${display}`}>
+                    <div className={`item-side-menu ${display}`} onClick={ (e) => this.props.navgation(0) }>
                         <img src={Home} alt="home-icon"/>
-                        <h5 className={`${menu}`}>
-                            <Link to="painel">
-                                Home
-                            </Link>
-                        </h5>
+                        <h5 className={`${menu}`}> Home </h5>
                     </div>
-                    <div className={`item-side-menu ${display}`}>
+                    <div className={`item-side-menu ${display}`} onClick={ (e) => alert('oi') }>
                         <img src={Box} alt="setting-icon"/>
                         <h5 className={`${menu}`}> Serviços </h5>
                     </div>
-                    <div className={`item-side-menu ${display}`}>
+                    <div className={`item-side-menu ${display}`} onClick={ (e) => this.props.navgation(1) }>
                         <img src={Services} alt="setting-icon"/>
                         <h5 className={`${menu}`}> Agendamentos </h5>
                     </div>
-                    <div className={`item-side-menu ${display}`}>
+                    <div className={`item-side-menu ${display}`} onClick={ (e) => alert('oi') }>
                         <img src={Settings} alt="setting-icon"/>
                         <h5 className={`${menu}`}> Configurações </h5>
                     </div>
@@ -101,7 +85,5 @@ export default class SideMenu extends Component {
                 </div>
             </>
         )
-    }
-        
-            
+    }        
 }
