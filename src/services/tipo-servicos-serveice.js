@@ -17,8 +17,6 @@ export const cadastrarServico = async servico =>{
 
     let data = new FormData();
 
-    console.log(servico)
-
     data.append('nome', servico.nome);
     data.append('preco', servico.preco);
     data.append('id_subcategoria', servico.id_tipo);
@@ -27,12 +25,8 @@ export const cadastrarServico = async servico =>{
     
     try{
         const retorno = await privateReq.post(SERVICO, data)
-        if(retorno.status === 201){
-            console.log(retorno)
-        }
-
-        return retorno
-
+        
+        return retorno.data.data
     } catch ( error ){
         return error.response
     }

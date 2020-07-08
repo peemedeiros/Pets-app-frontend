@@ -72,7 +72,6 @@ export default class PainelEmpresa extends Component{
                 novo_servico:{
                     id_empresa:this.props.match.params.id
                 }
-                
             })
         }catch(error){
             console.log(error)
@@ -103,11 +102,9 @@ export default class PainelEmpresa extends Component{
 
         const res = await cadastrarServico(this.state.novo_servico)
 
-        if(res !== 201){
-            return console.log(res.error)
-        }
-        
-        return console.log('cadastrou')
+        this.setState({ ...this.state, servico:this.state.servicos.push(res.servico) })
+
+        return console.log(res)
     }
     
     render(){
