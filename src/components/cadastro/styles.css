@@ -53,9 +53,20 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .logo{
-    width: 180px;
-    height: 40px;
+  .main-logo{
+    width: 70px !important;
+    height: 70px !important;
+  }
+  .logo-text{
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 35px !important;
+    font-family: Impact, Charcoal, sans-serif;
+    color: #ffffff;
+  }
+  .logo-text:hover{
+    cursor: pointer;
+    text-decoration: underline;
   }
   .titulo-principal{
     width: 75%;

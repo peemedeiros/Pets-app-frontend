@@ -14,7 +14,8 @@
 
 .formulario-servicos{
     width: 400px;
-    height: 500px;
+    height: auto;
+    min-height: 500px;
     border: solid 1px rgb(207, 207, 207);
     border-radius: 8px;
     box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.322);

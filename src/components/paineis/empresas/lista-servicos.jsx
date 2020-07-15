@@ -1,4 +1,5 @@
 import React from 'react';
+import PubSub from 'pubsub-js';
 
 export default props => {
 
@@ -19,10 +20,10 @@ export default props => {
                                 <td>{servico.nome}</td>
                                 <td>R${servico.preco}</td>
                                 <td>
-                                    <button className="btn btn-danger btn-sm mr-1">
+                                    <button onClick={ () => props.deletar(servico.id) } className="btn btn-danger btn-sm mr-1">
                                         Excluir
                                     </button>
-                                    <button className="btn btn-primary btn-sm">
+                                    <button onClick={ () => {PubSub.publish('editing', servico) }} className="btn btn-primary btn-sm">
                                         Editar
                                     </button>
                                 </td>

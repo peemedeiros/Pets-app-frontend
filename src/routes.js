@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
-import { privateReq, getToken } from './services/api'
-import { isLogged } from './services/auth-service'
+import { privateReq, getToken } from './services/api';
+import { isLogged } from './services/auth-service';
 import Home from './components/cadastro';
-import Login from './components/login/index'
-import AppLandPage from './components/usuario/appLandPage'
-import Teste from './components/paineis/usuario-empresa'
-import CadastroEmpresa from './components/cadastro-empresa/index'
+import Login from './components/login/index';
+import AppLandPage from './components/usuario/appLandPage';
+import Teste from './components/paineis/usuario-empresa';
+import CadastroEmpresa from './components/cadastro-empresa/index';
 import Step3 from './components/cadastro-empresa/step3';
-import Painel2 from './components/paineis/empresas/index'
+import Painel2 from './components/paineis/empresas/index';
+import Sobre from './components/site/sobre';
+import HomeSite from './components/site/home';
 
 const PrivateRoutes = ({ component: Component, ...rest}) => {
     return (
@@ -29,7 +31,7 @@ export default function Routes() {
     return (
         <BrowserRouter>
             <Switch>
-                
+
                 <Route path='/cadastro' exact component={Home}/>
                 <Route path='/login' exact component={Login}/>
                 <Route path='/app' exact component={AppLandPage}/>
@@ -37,7 +39,9 @@ export default function Routes() {
                 <PrivateRoutes path='/painel/cadastrar' exact component={CadastroEmpresa} />
                 <PrivateRoutes path='/painel' component={Teste} />
                 <PrivateRoutes path='/empresa/:id' exact component={Painel2} />
-                
+                <Route path='/sobre' exact component={Sobre}/>
+                <Route path='/' exact component={HomeSite} />
+
             </Switch>
         </BrowserRouter>
     )

@@ -1,5 +1,6 @@
 import React from 'react';
 import ListaServicos from './lista-servicos'
+import SpinnerButton from '../../template/spinnerLoader'
 
 
 const TipoServicos = props => {
@@ -8,17 +9,34 @@ const TipoServicos = props => {
         <>  
             {props.tipo_servico.map( tipoServico => {
                 return(
-                   <option key={tipoServico.id} value={tipoServico.id}> {tipoServico.subcategoria} </option>
+                   <option key={tipoServico.id} value={tipoServico.id} selected={tipoServico.selected == null ? false : true }> {tipoServico.subcategoria} </option>
                 )
             } )}
         </>
     );
-
 }
 
 export default props => {
 
     if( props.item !== 1 ) return null
+
+    let status = true;
+
+    let nome = props.novo_servico.nome
+    let preco = props.novo_servico.preco
+    let tipo = props.novo_servico.id_tipo
+    let foto = props.novo_servico.foto
+
+    let verificaNome = nome !== null && nome !== undefined && nome !== ""
+    let verificaPreco = preco !== null && preco !== undefined && preco !== ""
+    let verificaTipo = tipo !== null && tipo !== undefined && tipo !== ""
+    let verificaFoto = foto !== null & foto !== undefined && foto !== "" && foto !== []
+
+    if(verificaNome && verificaPreco && verificaTipo && verificaFoto){
+        status = false;
+    }else{
+        status = true;
+    }
 
     return(
         <>
@@ -62,14 +80,15 @@ export default props => {
                                     </div>
 
                                     <div className="form-group">
-                                        <button type="submit" className="btn btn-light btn-lg btn-block orange-button" > CADASTRAR </button>
+                                        <button disabled={status} type="submit" className="btn btn-light btn-lg btn-block orange-button" > CADASTRAR  <SpinnerButton status={props.disabled}/></button>
+                                        
                                     </div>
                                     
                                 </form>
                             </div>
 
                             <div className="col-md-7">
-                                <ListaServicos servicos={props.servicos}/>
+                                <ListaServicos deletar={props.deletar} servicos={props.servicos}/>
                             </div>
                         </div>
                     </div>

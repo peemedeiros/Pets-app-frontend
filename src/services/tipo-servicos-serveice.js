@@ -31,3 +31,16 @@ export const cadastrarServico = async servico =>{
         return error.response
     }
 }
+
+export const deletarServicos = async id =>{
+
+    try{
+        
+        const retorno = await privateReq.delete(`${SERVICO}/+${id}`);
+        return retorno
+
+    } catch ( error ){
+        return error.response
+    }
+
+}

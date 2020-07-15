@@ -1,31 +1,44 @@
-
-.sessao_total{
-    width: 100%;
-    min-height: 1200px;
-    height: auto;
-    background-color: #FFF5F3;
+@keyframes floating{
+    0%{
+        top:10px
+    }
+    50%{
+        top: 5px;
+    }
+    100%{
+        top: 10px;
+    }
 }
-/* Sessao 1 */
 
+@keyframes floating-inside{
+    0%{
+        top:60px
+    }
+    50%{
+        top: 55px;
+    }
+    100%{
+        top: 60px;
+    }
+}
+
+/* Sessao 1 */
 .sessao1{
     width: 100%;
     height: 150px;
-    background-color: #FFC296;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
 .logo-box{
-    
-    width:145px;
-    height: 145px;
-
+    width:100%;
+    height: 100%;
 }
 
 .logo-box img{
     width: inherit;
     height: inherit;
 }
-
 .text_titulo{
     font-size: 42px;
     padding-top: 40px;
@@ -36,8 +49,11 @@
 
 .sessao2{
     width: 100%;
-    height: 600px;
-    background-image: linear-gradient(#FFC296, #FFD18C);
+    height: 500px;
+    background-image: url('../../assets/cliente.png');
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 .foto-app{
@@ -56,25 +72,46 @@
 
 .text-app{
     font-size: 50px;
-    padding-top: 120px;
-    padding-left: 50px;
 }
 
 .box-qrcode{
     width: 300px;
-    height: 300px;
+    height: 600px;
     background-size: cover;
     position: fixed;
+    top: 10px;
+    right: 55px;
     font-size: 30px;
     text-align: center;
-    /* background-color: blue; */
-    margin-top: 40px;
-    
+    background-image: url('../../assets/mobile.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; 
+    z-index: 99;
+    box-shadow: 6px 6px 1px #4e4e4e75;
+    border-radius: 40px;
+}
+.floating{
+    animation: floating linear 1s infinite;
+}
+.floating-inside{
+    animation: floating-inside linear 1s infinite;
+}
+
+.appScreen{
+    width: 260px !important;
+    height: 470px !important;
+    position: fixed;
+    top: 60px;
+    right: 74px;
+    float: left;
+    border: solid 1px #c5c5c5;
+    border-radius: 8px;
 }
 
 .box-qrcode img{
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 100%;
     margin-top: 5px;
 }
 
@@ -84,18 +121,24 @@
     height: 100px;
     text-align: left;
     font-size: 60px;
-    padding-left: 40px;
 }
 
 .app-intro{
     font-size: 32px;
     text-align: justify;
-    padding-left: 50px;;
 }
 
-.box-icon{
-    padding-left: 70px;
-    padding-top: 20px;
+/* Sessao 3 */
+.sessao3{
+    width: 100%;
+    height: 600px;
+    background-image: linear-gradient(#FFC296, #FFD18C);
+}
+
+.introducao-app{
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
 }
 
 .box-icon img{
@@ -103,13 +146,29 @@
     height: 450px;
     background-size: cover;
 }
+.img-helper,
+.img-helper2{
+    width: 300px;
+    height: 300px;
+    background-image: url('../../assets/empresa.png');
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
 
 /* sessao 4 */
 
 .sessao4{
     width: 100%;
     height: 600px;
-    padding-left: 50px;
+    background-image: url('../../assets/dog3.png');
+    background-size: 250px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+.sessao4 p,
+.sessao5 p {
+    font-size: 20px;
 }
 
 .tela-app{
@@ -131,16 +190,20 @@
 
 .sessao5{
     width: 100%;
-    height: 400px;
+    height: 700px;
+    background-image: linear-gradient(#FFC296, #FFD18C);
     
+}
+.img-helper2{
+    background-image: url('../../assets/clientefeed.png') !important;
+    background-size: contain !important;
+    background-color: unset;
 }
 
 .txt-app{
     font-size: 30px;
-    padding-left: 70px;
 }
 
 .text-servicos{
-    padding-left: 90px;
     text-align: justify;
 }

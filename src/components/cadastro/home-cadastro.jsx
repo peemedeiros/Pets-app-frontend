@@ -9,7 +9,7 @@ import AlertError from '../errors/alertError'
 
 import empresa from '../../assets/empresa.png'
 import cliente from '../../assets/cliente.png'
-import logo from '../../assets/logo.png';
+import logo from '../../assets/petsAppLogo3.png';
 import plano1 from '../../assets/transporte.jpg';
 import arrow from '../../assets/arrow.png';
 
@@ -100,7 +100,8 @@ export default class CadastroRestaurante extends Component{
                         <div className="container">
                             <div className="nav-bar-container center">
                                 <div className="coluna-flex">
-                                    <img src={logo} className='logo' alt="logo"/>
+                                    <img src={logo} className='main-logo' alt="logo"/>
+                                    <h3 class="ml-3 logo-text">PETS APP</h3>
                                 </div>
                                 <div className="coluna-flex">
 
@@ -132,19 +133,19 @@ export default class CadastroRestaurante extends Component{
 
                                             <div className="form-group">
                                                 <label htmlFor="inputNome">Nome completo</label>
-                                                <input type="text" value={this.state.nome} onChange={this.handleChange} onBlur={this.handleChange} name="nome" className="form-control" id="inputNome" placeholder="Nome do dono da empresa" required/>
+                                                <input type="text" value={this.state.nome} onChange={this.handleChange} onBlur={this.handleChange} name="nome" className="form-control" id="inputNome" placeholder="Nome " required/>
                                                 <InputErrorMessage field={this.state.nome} />
                                             </div>
 
                                             <div className="form-group">
                                                 <label htmlFor="inputEmail">E-mail</label>
-                                                <input type="email" value={this.state.email} onChange={this.handleChange} onBlur={this.handleChange}  name="email" className="form-control" id="inputEmail" placeholder="E-mail do dono da empresa" required/>
+                                                <input type="email" value={this.state.email} onChange={this.handleChange} onBlur={this.handleChange}  name="email" className="form-control" id="inputEmail" placeholder="E-mail" required/>
                                                 <InputErrorMessage field={this.state.email}/>
                                             </div>
 
                                             <div className="form-group">
                                                 <label htmlFor="inputCelular">Celular com DDD</label>
-                                                <input type="text" value={this.state.celular} onChange={this.handleChange} onBlur={this.handleChange} name="celular" className="form-control" id="inputCelular" placeholder="Celular do dono da empresa" required/>
+                                                <input type="text" value={this.state.celular} onChange={this.handleChange} onBlur={this.handleChange} name="celular" className="form-control" id="inputCelular" placeholder="Celular" required/>
                                                 <InputErrorMessage field={this.state.celular}/>
                                             </div> 
 

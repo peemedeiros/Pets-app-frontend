@@ -2,18 +2,19 @@ import React, { Component } from 'react'
 import SideMenu from './side-menu'
 import CadastroServicos from './cadastro-servico'
 import { sigleEmpresa, listarTiposServico } from '../../../services/empresas-services'
+import { deletarServicos } from '../../../services/tipo-servicos-serveice'
 import { listarServicos, cadastrarServico } from '../../../services/tipo-servicos-serveice'
+import PubSub from 'pubsub-js';
 import LoadingGif from '../../../assets/loading-balls.gif';
 import Home from './home'
 
 import './cadastro-servico.css'
 
-
 export default class PainelEmpresa extends Component{
     
     constructor(){
         super()
-        this.state = {
+        this.stateInicial = {
             razao_social:'',
             nome_fantasia:'',
             cnpj:'',
@@ -32,26 +33,49 @@ export default class PainelEmpresa extends Component{
             servicos:[],
             item_menu:0,
             novo_servico:{
-                nome:'',
-                preco:'',
-                id_tipo:'',
+                nome:null,
+                preco:null,
+                id_tipo:null,
                 foto:[],
                 id_empresa:''
-            }
+            },
+            disabled:false,
+            errors:{
+                alert:false,
+                error_data:[]
+            },
         }
+
+        this.state = this.stateInicial;
+
+        PubSub.subscribe('editing', (msg, servico) => {
+            // let index = servico.id_subcategoria - 1
+            // this.setState({ tipo_servico:padrao })
+            // console.log(this.state.tipo_servico)
+            // if(this.state.tipo_servico[index] !== null && this.state.tipo_servico[index] !== undefined){
+            //     this.state.tipo_servico[index].selected = 'selected'
+            // }
+            this.setState({
+                novo_servico:{ ...this.state.novo_servico, nome:servico.nome, preco:servico.preco, id_empresa:servico.id_empresa }
+            })
+        });
+
         this.navgation = this.navgation.bind(this)
         this.handlerChange = this.handlerChange.bind(this)
         this.fileHandler = this.fileHandler.bind(this)
         this.hundleSubmit = this.hundleSubmit.bind(this)
+        this.deletar = this.deletar.bind(this)
     }
 
     async componentDidMount(){
         this.setState({ images:LoadingGif })
+        
         try{
 
             const retorno = await sigleEmpresa(this.props.match.params.id)
             const retornoTiposServicos = await listarTiposServico()
             const retornoServicos = await listarServicos(this.props.match.params.id)
+            
             this.setState({ 
 
                 razao_social:retorno.razao_social,
@@ -71,16 +95,14 @@ export default class PainelEmpresa extends Component{
                 servicos:retornoServicos,
                 novo_servico:{
                     id_empresa:this.props.match.params.id
-                }
+                },
             })
+            
         }catch(error){
             console.log(error)
         }
     }
 
-
-
-    
     navgation(item){
         return this.setState({item_menu:item})
     }
@@ -88,7 +110,6 @@ export default class PainelEmpresa extends Component{
     handlerChange(e){
         const {name, value} = e.target;
         this.setState({ novo_servico:{...this.state.novo_servico, [name] : value }});
-        console.log(name+"  "+value)
     }
 
     fileHandler(e){
@@ -97,15 +118,30 @@ export default class PainelEmpresa extends Component{
 
     hundleSubmit = async e =>{
         e.preventDefault();
-        
-        console.log(this.state.novo_servico)
 
+        this.setState({disabled:true});
+        
         const res = await cadastrarServico(this.state.novo_servico)
 
-        this.setState({ ...this.state, servico:this.state.servicos.push(res.servico) })
+        this.setState({...this.state, servico:this.state.servicos.push(res.servico), disabled:false })
 
         return console.log(res)
     }
+
+    deletar = async id =>{
+        const servicosCadastrados = this.state.servicos;
+        const retorno = await deletarServicos(id)
+
+        if(retorno.status === 204){
+            this.setState({
+                servicos: servicosCadastrados.filter(servico => {
+                    return servico.id !== id
+                })
+            })
+        }
+    }
+
+    
     
     render(){
 
@@ -131,6 +167,8 @@ export default class PainelEmpresa extends Component{
                     handlerChange={this.handlerChange}
                     fileHandler={this.fileHandler}
                     hundleSubmit={this.hundleSubmit}
+                    disabled={this.state.disabled}
+                    deletar={this.deletar}
                 />
 
                 
