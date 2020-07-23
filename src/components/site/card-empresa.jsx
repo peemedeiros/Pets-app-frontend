@@ -16,14 +16,20 @@ export default props => {
             <div className="empresa-foto">
                 <img src={imgURL} alt="logo"/>
             </div>
-            <div className="empresa-info">
-                <h6>{props.empresa.nome_fantasia}</h6>
-                <h6>{props.empresa.telefone_empresa}</h6>
-                <h6>{props.empresa.cidade} - {props.empresa.uf}</h6>
-                {props.empresa.categoria.map( categoria => {
-                    return <h6>{categoria.categoria}</h6>
-                })}
-                
+            <div className="empresa-info-box">
+                <div className="empresa-info p-3 d-flex flex-column justify-contet-center">
+                    <h6>{props.empresa.nome_fantasia}</h6>
+                    <h6>{props.empresa.telefone_empresa}</h6>
+                    <h6>{props.empresa.cidade} - {props.empresa.uf}</h6>
+                </div>
+                <div className="empresa-info p-3">
+                    <h6>Tipo de empresa</h6>
+                    <div className="categoria-info-card-empresa">
+                        {props.empresa.categoria.map( categoria => {
+                            return <h6 className="text-categoria"> {categoria.categoria} <span></span></h6>
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
 

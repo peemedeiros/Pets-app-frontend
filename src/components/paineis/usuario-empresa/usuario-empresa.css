@@ -42,9 +42,10 @@
 }
 
 .separador{
-    width: 80%;
-    height: 1px;
+    width: 80% !important;
+    height: 1px !important;
     background-color: rgb(141, 141, 141);
+    opacity: 0;
 }
 .hide-text{
     position: relative;

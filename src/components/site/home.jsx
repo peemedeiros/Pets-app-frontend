@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
 import CardEmpresa from './card-empresa';
+import Nav from './navbar';
 import $ from 'jquery';
 
 import { listarEmpresasPublics } from '../../services/public-empresa-services'
@@ -36,24 +36,7 @@ export default class Home extends Component{
     render (){
         return(
             <>
-                <nav className="nav-home">
-                    <div className='container d-flex justify-content-end'>
-                        <div className='nav-item-box'>
-                            <div className='nav-itens' >
-                                <Link to='/sobre' className="router-link"> Sobre nós </Link> 
-                            </div>
-                            <div className='nav-itens'>
-                                <Link to='/cadastro' className="router-link"> Para Empresas </Link> 
-                            </div>
-                            <div className='nav-itens'>
-                                <Link to='/app' className="router-link"> Para usuarios </Link> 
-                            </div>
-                            <div className='nav-itens max-largura'>
-                                <Link to='/cadastro' className="btn btn-primary orage-default"> CADASTRAR </Link>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                <Nav />
                 <div className="header-home">
                     <img src={dog3} alt="dog3" class="dogie3"/>
                     <img src={dogfood} alt="dogfood" class="dogiefood"/>
@@ -62,7 +45,7 @@ export default class Home extends Component{
                         <div className="logo-home-header mb-3">
                             <img src={logo} alt="logo"/>
                             
-                            <h4> PETS APP </h4>
+                            <h4> PETS <span className="text-light-blue"> APP </span></h4>
                         </div>
                         <div className="row">
                             <h1 className=" dark-gray-text"> Agora você tem mais facilidade em cuidar do seu <span className="orange-text"> PET </span> </h1>
@@ -95,15 +78,18 @@ export default class Home extends Component{
                 </div>
                 <div className="empresas-pets">
                     <div className="container">
-                        <h4>
+                        <h2 className="text-white">
                             Empresas
-                        </h4>
+                        </h2>
                         <div className="empresas">
                             { this.state.empresas.map( empresa => {
                                 return <CardEmpresa empresa={empresa}/>
                             }) }
                         </div>
                     </div>
+                </div>
+                <div className="footer-home d-none">
+                    
                 </div>
             </>
         )

@@ -29,7 +29,7 @@ export default class progressBar extends Component{
             <>
                 <div className='container'>
                     <div className='nav-bar-container flex-center'>
-                        <img src={logo2} alt="logo"/>
+                        <img src={logo2} alt="logo" className="ajustelogo"/>
                     </div>
                 </div>
                 <div className="progress">

@@ -96,7 +96,12 @@ nav a:hover{
 }
 .sobre-titulo{
 	width: 100%;
-	height: 400px;
+	height: 500px;
+	padding-top: 30px;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	justify-content: space-between;
 }
 
 /* HOME */
@@ -334,9 +339,16 @@ footer{
 	height: 600px;
 	background-color: #FFF5F3;
 	font-size: 18px !important;
+	background-image: url('../../assets/petsAppLogo3.png');
+	background-repeat: no-repeat;
+	background-position: center;
 }
 #sobre-section1{
-	height: 400px !important;
+	height: 500px !important;
+	display: flex;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center;
 }
 #sobre-section2{
 	background-image: linear-gradient(#FFC296, #FFD18C);
@@ -381,6 +393,14 @@ footer{
 	font-family: Impact, Charcoal, sans-serif;
 	color:#444444;
 }
+.logo-font{
+	color: #ff9e58;
+	font-family: Impact, Charcoal, sans-serif;
+}
+.logo-font-blue{
+	color:#39aae1;
+}
+
 .section2-text {
 	width: 500px;
 	height: 500px;
@@ -470,6 +490,14 @@ footer{
 	background-color: #14ccc6 !important;
 	border: none;
 }
+.text-light-blue{
+	color:#14ccc6;
+}
+/* FOOTER */
+.footer-home{
+	width: 100%;
+	height: 500px;
+}
 
 /* NAV BAR */
 .nav-home{
@@ -517,12 +545,15 @@ footer{
 }
 .header-home .dogie3 {
 	position: absolute;
-	opacity: 0.5;
+	opacity: 0.2;
+	left: 50px;
+	transform: rotate(15deg);
 }
 .header-home .dogiefood{
 	position: absolute;
-	right: 0px;
-	opacity: 0.5;
+	right: 50px;
+	opacity: 0.2;
+	transform: rotate(-15deg);
 }
 .logo-home-header{
 	width: 150px;
@@ -609,21 +640,22 @@ footer{
 	min-height: 600px;
 	height: auto;
 	padding-top:40px;
-	background-image: linear-gradient(#FFC296, #FFD18C);
+	background-image: url('../../assets/section1bg.png');
+	background-repeat: repeat-x;
+	background-size: contain;
 }
 .empresas{
 	width: 100%;
 	height: auto;
 	min-height: 500px;
 	display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
 	padding: 10px;
 	
 }
 .empresa-card{
 	width: 350px;
-	height: 200px;
+	height: 180px;
 	border-radius: 8px;
 	box-shadow: 3px 3px 2px #8d8d8d88;
 	display: flex;
@@ -631,6 +663,7 @@ footer{
 	transition: 500ms;
 	padding: 5px;
 	background-color: #FFFFFF;
+	margin-right: 10px;
 }
 .empresa-card:hover{
 	cursor: pointer;
@@ -650,13 +683,27 @@ footer{
 	box-shadow: 5px 5px 5px #6e6e6e86;
 	border-radius: 3px;
 }
-.empresa-info{
+
+.empresa-info-box{
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+.text-categoria{
+	font-size: 12px;
+}
+.text-categoria span {
+	margin-right: 5px;
+}
+.empresa-info{
+	width: 100%;
+	height: 50%;
+}
+.categoria-info-card-empresa{
+	display: flex;
 }
 
 /* CONTATO */

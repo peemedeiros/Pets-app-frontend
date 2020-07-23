@@ -56,13 +56,13 @@ export default class SideMenu extends Component {
                         <img src={Home} alt="home-icon"/>
                         <h5 className={`${menu}`}> Home </h5>
                     </div>
-                    <div className={`item-side-menu ${display}`} onClick={ (e) => alert('oi') }>
-                        <img src={Box} alt="setting-icon"/>
-                        <h5 className={`${menu}`}> Serviços </h5>
-                    </div>
-                    <div className={`item-side-menu ${display}`} onClick={ (e) => this.props.navgation(1) }>
+                    <div className={`item-side-menu ${display}`} onClick={ (e) => this.props.navgation(2) }>
                         <img src={Services} alt="setting-icon"/>
                         <h5 className={`${menu}`}> Agendamentos </h5>
+                    </div>
+                    <div className={`item-side-menu ${display}`} onClick={ (e) => this.props.navgation(1) }>
+                        <img src={Box} alt="setting-icon"/>
+                        <h5 className={`${menu}`}> Serviços </h5>
                     </div>
                     <div className={`item-side-menu ${display}`} onClick={ (e) => alert('oi') }>
                         <img src={Settings} alt="setting-icon"/>

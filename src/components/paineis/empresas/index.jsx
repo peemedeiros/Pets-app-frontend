@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import SideMenu from './side-menu'
 import CadastroServicos from './cadastro-servico'
+import Agendamentos from './agendamento'
 import { sigleEmpresa, listarTiposServico } from '../../../services/empresas-services'
+import { listaAgendamentos } from '../../../services/agendamentos-services'
 import { deletarServicos } from '../../../services/tipo-servicos-serveice'
 import { listarServicos, cadastrarServico } from '../../../services/tipo-servicos-serveice'
 import PubSub from 'pubsub-js';
@@ -31,6 +33,7 @@ export default class PainelEmpresa extends Component{
             categorias:[],
             tipo_servico:[],
             servicos:[],
+            agendamentos:[],
             item_menu:0,
             novo_servico:{
                 nome:null,
@@ -75,9 +78,9 @@ export default class PainelEmpresa extends Component{
             const retorno = await sigleEmpresa(this.props.match.params.id)
             const retornoTiposServicos = await listarTiposServico()
             const retornoServicos = await listarServicos(this.props.match.params.id)
+            const retornoAgendamentos = await listaAgendamentos()
             
             this.setState({ 
-
                 razao_social:retorno.razao_social,
                 nome_fantasia:retorno.nome_fantasia,
                 cnpj:retorno.cnpj,
@@ -96,6 +99,7 @@ export default class PainelEmpresa extends Component{
                 novo_servico:{
                     id_empresa:this.props.match.params.id
                 },
+                agendamentos:retornoAgendamentos.data
             })
             
         }catch(error){
@@ -171,8 +175,11 @@ export default class PainelEmpresa extends Component{
                     deletar={this.deletar}
                 />
 
-                
-                
+                <Agendamentos 
+                    item={this.state.item_menu}
+                    agendamentos={this.state.agendamentos}
+                />
+
             </>
         )
     }

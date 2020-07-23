@@ -3,7 +3,7 @@ import './usuario.css';
 
 import { Link } from 'react-router-dom';
 import logoApp from '../../assets/petsAppLogo3.png'
-import tituloApp from '../../assets/logo2.png'
+import tituloApp from '../../assets/PETSAPP.png'
 import fotoApp2 from '../../assets/pagina2pet.PNG'
 import fotoApp3 from '../../assets/pagina3pet.PNG'
 import fotoCelular from '../../assets/mobile.png'

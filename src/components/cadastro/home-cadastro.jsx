@@ -106,7 +106,7 @@ export default class CadastroRestaurante extends Component{
                                 <div className="coluna-flex">
 
                                     <button type="button" className="btn btn-light">
-                                        <Link to="/login">Já sou cadastrado</Link>
+                                        <Link to="/login">Já sou parceiro</Link>
                                     </button>
 
                                     <button type="button" className="btn btn-light bg-white">

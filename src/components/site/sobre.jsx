@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Nav from './navbar'
 
 import './site.css'
 import logo from '../../assets/petsAppLogo3.png'
@@ -7,7 +7,7 @@ import logo from '../../assets/petsAppLogo3.png'
 export default props => {
     return (
         <>
-            <nav id="navigation-bar">
+            {/* <nav id="navigation-bar">
                 <div className="container d-flex justify-content-between">
                     <div className="logo-site">
                         <img src={logo} alt="logo" />
@@ -27,12 +27,13 @@ export default props => {
                         </li>
                     </ul>
                 </div>
-            </nav>
-
+            </nav> */}
+            <Nav />
             <section id="sobre-section1">
                 <div className="container " >
-                    <div className="sobre-titulo d-flex justify-content-center align-items-center">
-                        <h1 className="surgir">Sobre nós</h1>
+                    <div className="sobre-titulo ">
+                        <h1 className="surgir text-center">Sobre nós</h1>
+                        <h1 className="surgir text-center logo-font">PETS <span className="text-light-blue">APP</span></h1>
                     </div>
                 </div>
             </section>
