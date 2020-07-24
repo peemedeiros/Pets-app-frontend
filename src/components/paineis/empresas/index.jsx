@@ -3,7 +3,7 @@ import SideMenu from './side-menu'
 import CadastroServicos from './cadastro-servico'
 import Agendamentos from './agendamento'
 import { sigleEmpresa, listarTiposServico } from '../../../services/empresas-services'
-import { listaAgendamentos } from '../../../services/agendamentos-services'
+import { listaAgendamentos, mudarStatusAgendamento } from '../../../services/agendamentos-services'
 import { deletarServicos } from '../../../services/tipo-servicos-serveice'
 import { listarServicos, cadastrarServico } from '../../../services/tipo-servicos-serveice'
 import PubSub from 'pubsub-js';
@@ -52,12 +52,6 @@ export default class PainelEmpresa extends Component{
         this.state = this.stateInicial;
 
         PubSub.subscribe('editing', (msg, servico) => {
-            // let index = servico.id_subcategoria - 1
-            // this.setState({ tipo_servico:padrao })
-            // console.log(this.state.tipo_servico)
-            // if(this.state.tipo_servico[index] !== null && this.state.tipo_servico[index] !== undefined){
-            //     this.state.tipo_servico[index].selected = 'selected'
-            // }
             this.setState({
                 novo_servico:{ ...this.state.novo_servico, nome:servico.nome, preco:servico.preco, id_empresa:servico.id_empresa }
             })
@@ -68,6 +62,7 @@ export default class PainelEmpresa extends Component{
         this.fileHandler = this.fileHandler.bind(this)
         this.hundleSubmit = this.hundleSubmit.bind(this)
         this.deletar = this.deletar.bind(this)
+        this.atualizarStatusAgendamento = this.atualizarStatusAgendamento.bind(this)
     }
 
     async componentDidMount(){
@@ -145,8 +140,24 @@ export default class PainelEmpresa extends Component{
         }
     }
 
-    
-    
+    atualizarStatusAgendamento = async (id, status) =>{
+        const agendamentos = this.state.agendamentos;
+        const retorno = await mudarStatusAgendamento(id, status)
+
+        const agendamentosAceitos = agendamentos
+        
+        agendamentosAceitos.map(agendamento => {
+            if(agendamento.id == id){
+                agendamento.status = status
+            }
+            console.log(agendamento)
+        })
+
+        this.setState({agendamentos:agendamentosAceitos});
+
+        return console.log(retorno)
+    }
+
     render(){
 
         return(
@@ -178,6 +189,7 @@ export default class PainelEmpresa extends Component{
                 <Agendamentos 
                     item={this.state.item_menu}
                     agendamentos={this.state.agendamentos}
+                    atualizarStatusAgendamento={this.atualizarStatusAgendamento}
                 />
 
             </>

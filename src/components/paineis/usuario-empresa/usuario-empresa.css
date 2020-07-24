@@ -1,8 +1,8 @@
 /* SIDE MENU */
 .side-menu{
     width: 65px;
-    height: 100vh;
-    position: absolute;
+    height: 100% !important;
+    position: fixed;
     background-image: linear-gradient(to right, #FFE49D, #FFD18C);
     display: flex;
     flex-direction: column;
@@ -66,6 +66,8 @@
     float: left;
     background-color: #FFD18C;
     display: flex;
+    position: fixed;
+    z-index: 10;
 }
 .top-menu button img{
     width: 20px;
@@ -136,6 +138,7 @@
     width: 100%;
     height: auto;
     display: flex;
+    padding-top: 65px;
 
 }
 .helper{
@@ -145,12 +148,12 @@
 }
 .empresas-body{
     width: 100%;
-    height: 90vh !important;
+    height: auto !important;
     background-color: #FFF5F3;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    overflow-y:auto;
+    min-height: 100vh;
 }
 .title{
     width: 100%;
