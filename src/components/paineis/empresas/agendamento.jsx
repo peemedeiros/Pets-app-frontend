@@ -96,7 +96,7 @@ export default props => {
                 </thead>
                 <tbody>
                 
-                    
+                    {console.log(props.agendamento)}
                     {props.agendamentos.map( agendamento => {
                         return (
                             <tr style={{ backgroundColor:mudarStatusAgendamento(agendamento.status) }}>

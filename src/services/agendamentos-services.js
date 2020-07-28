@@ -9,12 +9,22 @@ export const listaAgendamentos = async () => {
 
     try{
         const retorno = await privateReq.get(RESOURCE)
-        console.log(retorno.data)
         return retorno.data
     }catch( error ){
         return error.response
     }
 
+}
+
+export const listaAgendamentosPorEmpresa = async (id) => {
+    try{
+        const retorno = await privateReq.get(`${RESOURCE}/empresa/${id}`)
+        console.log(retorno.data)
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        return retorno.data
+    }catch( error ){
+        return error.response
+    }
 }
 
 export const mudarStatusAgendamento = async (id, status) => {

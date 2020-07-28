@@ -3,7 +3,7 @@ import SideMenu from './side-menu'
 import CadastroServicos from './cadastro-servico'
 import Agendamentos from './agendamento'
 import { sigleEmpresa, listarTiposServico } from '../../../services/empresas-services'
-import { listaAgendamentos, mudarStatusAgendamento } from '../../../services/agendamentos-services'
+import { listaAgendamentos, mudarStatusAgendamento, listaAgendamentosPorEmpresa } from '../../../services/agendamentos-services'
 import { deletarServicos } from '../../../services/tipo-servicos-serveice'
 import { listarServicos, cadastrarServico } from '../../../services/tipo-servicos-serveice'
 import PubSub from 'pubsub-js';
@@ -74,6 +74,7 @@ export default class PainelEmpresa extends Component{
             const retornoTiposServicos = await listarTiposServico()
             const retornoServicos = await listarServicos(this.props.match.params.id)
             const retornoAgendamentos = await listaAgendamentos()
+            const retornoAgendamentosPorEmpresa = await listaAgendamentosPorEmpresa(this.props.match.params.id)
             
             this.setState({ 
                 razao_social:retorno.razao_social,
@@ -87,16 +88,19 @@ export default class PainelEmpresa extends Component{
                 cidade:retorno.cidade,
                 uf:retorno.uf,
                 transporte:retorno.transporte,
-                images:'http://127.0.0.1:8000/storage/' + retorno.foto[0].foto,
+                images:'http://192.168.1.106:8000/storage/' + retorno.foto[0].foto,
                 categorias:retorno.categoria,
                 tipo_servico:retornoTiposServicos,
                 servicos:retornoServicos,
                 novo_servico:{
                     id_empresa:this.props.match.params.id
                 },
-                agendamentos:retornoAgendamentos.data
+                agendamentos:retornoAgendamentosPorEmpresa
             })
-            
+                console.log('$$$$$$$$$$$$$$$')
+                console.log(this.state.agendamentos)
+                console.log(retornoAgendamentosPorEmpresa)
+                console.log(this.props.match.params.id)
         }catch(error){
             console.log(error)
         }
@@ -167,11 +171,13 @@ export default class PainelEmpresa extends Component{
                     nome_fantasia={this.state.nome_fantasia}
                     navgation={this.navgation}
                     item={this.state.item_menu}
+                    cidade={this.state.cidade}
                 />
 
                 <Home 
                     item={this.state.item_menu}
                     nome_empresa={this.state.nome_fantasia}
+                    agendamentos={this.state.agendamentos}
                 />
 
                 <CadastroServicos

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = "http://127.0.0.1:8000/api/v1/";
+const URL = "http://192.168.1.106:8000/api/v1/";
 const TOKEN_KEY = '@PetsApp:token';
 
 const CONFIG = {

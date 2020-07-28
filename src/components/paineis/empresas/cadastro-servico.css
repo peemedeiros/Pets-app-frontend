@@ -55,3 +55,56 @@ table td {
 .w95p{
     width: 95% !important;
 }
+.date-time span{
+    font-size: 18px;
+    
+}
+
+.card-qtd-servicos{
+    width: 330px;
+    height: 180px;
+    background-color: #6BC063;
+    float: left;
+    margin-right: 20px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 3px #24242442;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.red-card{
+    background-color: #E57272;
+}
+
+.blue-card{
+    background-color: #7D96F0;
+}
+
+.card-qtd-servico-title{
+    width: 100%;
+    height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF;
+}   
+.card-content-servicos{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.card-content-help{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.card-content-help img{
+    width: 70%;
+    height: 70%;
+}

@@ -7,6 +7,7 @@ import Menu from '../../../assets/open-menu.png';
 import Box from '../../../assets/commerce.png';
 import Services from '../../../assets/business.png';
 import { Link } from 'react-router-dom';
+import { get } from 'jquery';
 
 export default class SideMenu extends Component {
 
@@ -14,6 +15,7 @@ export default class SideMenu extends Component {
         super()
         this.state = {
             menu:false,
+            hora:"",
         }        
         this.menuHandler = this.menuHandler.bind(this)
     }
@@ -35,7 +37,24 @@ export default class SideMenu extends Component {
             margin = "margin-right"
             menu = "show-text"
         }
+
+       
+        
+        var dataAtual = new Date;
+
+        var dias = new Array(
+            'domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'
+        );
+        var meses = new Array(
+            'Janeiro','Fevereiro','Março','Abril','Maio','Junho', 'Julho', 'Agosto', 
+            'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+        )
+
+        var cidade = this.props.cidade;
+
     
+        var str_data = `${cidade}, ${dataAtual.getDate()} de ${meses[dataAtual.getMonth()]} de ${dataAtual.getFullYear()}`
+
         return(
             <>
                 <div className={`side-menu ${display}`}>
@@ -76,7 +95,7 @@ export default class SideMenu extends Component {
                             <img src={Menu} alt="menu-button"/>
                         </button>
                         <div className="date-time">
-                            Alguma data 
+                            <span>{str_data}</span>
                         </div>
                         <Link to="/painel" className="btn btn-danger btn-sm sair-empresa">
                             VOLTAR

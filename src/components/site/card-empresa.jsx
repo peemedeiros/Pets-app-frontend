@@ -8,7 +8,7 @@ export default props => {
     if(!props.empresa.foto[0]){
         imgURL = house
     }else{
-        imgURL = "http://127.0.0.1:8000/storage/"+props.empresa.foto[0].foto
+        imgURL = "http://192.168.1.106:8000/storage/"+props.empresa.foto[0].foto
     }
 
     return(
